@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+
+    public int Health = 100;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,5 +31,24 @@ public class PlayerManager : MonoBehaviour
             }
         }
 
+        if(Health <= 0){
+
+            //Active gameover
+            Destroy(gameObject);
+        }
+
     }
+
+    void OnCollisionEnter(Collision collide)
+    {
+        if (collide.gameObject.tag == "Player")
+        {
+            // Debug.Log("hit");
+
+            Health -= 8;
+            
+        }
+    }
+
+
 }

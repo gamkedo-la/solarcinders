@@ -5,11 +5,16 @@ using UnityEngine;
 public class Shooter : MonoBehaviour
 {
     GameObject player;
-    public float speed = 1.0f;
+    public float speed;
     float timer = 2;
-    public float dist = 1050.0f;
     int state = 1;
     public int HP = 1;
+
+    public GameObject waypoint;
+
+    public float POW;
+    public float mod;
+
     //Vector3 temp;
 
     // Start is called before the first frame update
@@ -29,14 +34,21 @@ public class Shooter : MonoBehaviour
 
         if (state == 1)
         {
-            dist -= speed * Time.fixedDeltaTime;
-            transform.position += transform.forward * speed * Time.fixedDeltaTime;
 
-            if (dist <= 0)
+            float dist = Vector3.Distance(waypoint.transform.position, gameObject.transform.position);
+
+            speed = Mathf.Pow(dist, POW) + mod;
+
+            float step = speed * Time.deltaTime;
+
+            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, waypoint.transform.position, step);
+
+            if(dist < .05)
             {
-                transform.LookAt(player.transform);
-                gameObject.GetComponent<Shoot>().Fire();
-                state = 2; }
+                state = 2;
+
+            }
+
         }
         if (state == 2)
         {
