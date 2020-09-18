@@ -11,7 +11,9 @@ public class PowerUp : MonoBehaviour
 
     public bool DebugStartWithFullCharge = false;
 
+    public StatusBars statusBars;
 
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -28,16 +30,20 @@ public class PowerUp : MonoBehaviour
     void Update()
     {
         
-        if(On == true)
+
+        if (On == true)
         {
 
             Charge -= Time.deltaTime * drainRate;
+
 
             if (Charge <= 0)
             {
                 Charge = 0;
                 On = false;
             }
+
+            statusBars.SetFill(Charge);
         }
 
         if (On == false && Input.GetButtonDown("Fire2") && Charge > 50)
@@ -58,6 +64,8 @@ public class PowerUp : MonoBehaviour
         {
             Charge = 100;
         }
+
+        statusBars.SetFill(Charge);
 
     }
 

@@ -91,10 +91,18 @@ public class Shooter : MonoBehaviour
         if (collision.collider.tag == "PlayerLaser")
         {
 
-            HP -= 20;
+            TakeDamage(collision.gameObject.GetComponent<Damage>().damage);
             
 
         }
 
     }
+
+    void TakeDamage(int dam)
+    {
+
+        HP -= dam;
+
+    }
+
 }

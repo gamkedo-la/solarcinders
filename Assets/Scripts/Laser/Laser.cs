@@ -42,7 +42,7 @@ public class Laser : MonoBehaviour {
         if (collide.gameObject.tag == "enemy")
         {
             // Debug.Log("hit");
-            GameObject.Find("Ship").GetComponent<PowerUp>().Add(1);
+            GameObject.Find("Ship").GetComponent<PowerUp>().Add(collide.gameObject.GetComponent<Charge>().charge);
 
             Destroy(gameObject);
         }

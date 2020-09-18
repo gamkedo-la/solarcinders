@@ -8,6 +8,8 @@ public class EnemyLaser : MonoBehaviour
     public float speed;
     float step;
 
+    
+
     // Use this for initialization
     void Start()
     {

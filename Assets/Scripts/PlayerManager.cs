@@ -7,6 +7,10 @@ public class PlayerManager : MonoBehaviour
 
     public int Health = 100;
 
+    public StatusBars statusBars;
+
+   
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +20,7 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
 
         if (Input.GetButtonDown("Fire1"))
         {
@@ -41,13 +45,16 @@ public class PlayerManager : MonoBehaviour
 
     void OnCollisionEnter(Collision collide)
     {
-        if (collide.gameObject.tag == "Player")
-        {
-            // Debug.Log("hit");
+        TakeDamage(collide.gameObject.GetComponent<Damage>().damage);
+    }
 
-            Health -= 8;
-            
-        }
+    void TakeDamage(int dam)
+    {
+        Health -= dam;
+
+        statusBars.SetFill(Health);
+
+
     }
 
 
