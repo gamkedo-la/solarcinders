@@ -51,7 +51,7 @@ public class TerrainManager : MonoBehaviour
 
             timer = reset;
 
-            i++;
+            //i++;
 
         }
 
