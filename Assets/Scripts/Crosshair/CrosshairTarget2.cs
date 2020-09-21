@@ -7,20 +7,37 @@ public class CrosshairTarget2 : MonoBehaviour
 
     public Transform Anchor;
     Vector3 temp = new Vector3(0,0,0);
-    public int sense;
+    public int sense = 15;
+
+    GameObject player;
 
     public int yBound = 20;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
+        player = GameObject.Find("ship");
+
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
 
+      /*  if(player.GetComponent<PlayerManager>().rolling == true)
+        {
+
+            sense = 5;
+
+        }
+        else
+        {
+
+            sense = 15;
+
+        }
+        */
 
         temp = Anchor.transform.position;
 

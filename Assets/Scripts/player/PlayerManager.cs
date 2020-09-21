@@ -9,6 +9,13 @@ public class PlayerManager : MonoBehaviour
 
     public StatusBars HP;
 
+    public bool rolling = false;
+    public float rolltimer;
+    public float rolltimerReset;
+    public float rollSpeed;
+
+    int spin = 1;
+
    
 
     // Start is called before the first frame update
@@ -35,6 +42,33 @@ public class PlayerManager : MonoBehaviour
             }
         }
 
+        if (Input.GetButtonDown("Fire3") && rolling == false)
+        {
+
+            BarrellRoll();
+
+        }
+
+        if (rolling == true)
+        {
+            
+            transform.Rotate(transform.forward, rollSpeed*spin);
+            spin++;
+            rolltimer -= Time.deltaTime;
+
+            if(rolltimer <= 0)
+            {
+
+                rolling = false;
+                spin = 1;
+
+            }
+
+        }
+
+
+
+
         if(Health <= 0){
 
             //Active gameover
@@ -50,10 +84,21 @@ public class PlayerManager : MonoBehaviour
 
     void TakeDamage(int dam)
     {
-        Health -= dam;
 
-        HP.SetFill(Health);
+        if (rolling == false)
+        {
+            Health -= dam;
 
+            HP.SetFill(Health);
+        }
+
+    }
+
+    void BarrellRoll()
+    {
+
+        rolling = true;
+        rolltimer = rolltimerReset;
 
     }
 
