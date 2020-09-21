@@ -10,10 +10,14 @@ public class Shooter : MonoBehaviour
     int state = 1;
     public int HP = 1;
 
+    public int PointsGiven = 10;
+
     public GameObject waypoint;
 
     public float POW;
     public float mod;
+
+
 
     //Vector3 temp;
 
@@ -71,7 +75,10 @@ public class Shooter : MonoBehaviour
     {
 
         Destroy(gameObject);
-        //update score
+        GameObject player = GameObject.Find("Ship");
+        player.GetComponent<Combo>().Add();
+        player.GetComponent<Score>().ScoreChange(PointsGiven);
+        
 
     }
 

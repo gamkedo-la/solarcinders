@@ -7,7 +7,7 @@ public class PlayerManager : MonoBehaviour
 
     public int Health = 100;
 
-    public StatusBars statusBars;
+    public StatusBars HP;
 
    
 
@@ -52,7 +52,7 @@ public class PlayerManager : MonoBehaviour
     {
         Health -= dam;
 
-        statusBars.SetFill(Health);
+        HP.SetFill(Health);
 
 
     }
