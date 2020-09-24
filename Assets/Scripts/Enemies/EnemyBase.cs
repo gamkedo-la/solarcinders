@@ -11,6 +11,8 @@ public class EnemyBase : MonoBehaviour
     public float HitRegTimer = 0.3f;
     public float HitRegTimerReset = 0.3f;
 
+    public int SpawnTime;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +23,7 @@ public class EnemyBase : MonoBehaviour
     void Update()
     {
 
-        if (gameObject.GetComponent<Renderer>().material.color == HitColor)
+        /*if (gameObject.GetComponent<Renderer>().material.color == HitColor)
         {
 
 
@@ -36,7 +38,7 @@ public class EnemyBase : MonoBehaviour
 
 
 
-        }
+        }*/
     }
 
     void OnCollisionEnter(Collision other)
@@ -45,7 +47,7 @@ public class EnemyBase : MonoBehaviour
         {
             Debug.Log("enemyhit");
             //Destroy(gameObject);
-            gameObject.GetComponent<Renderer>().material.color = HitColor;
+            //gameObject.GetComponent<Renderer>().material.color = HitColor;
 
 
         }

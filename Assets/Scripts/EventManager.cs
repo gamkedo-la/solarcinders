@@ -38,12 +38,24 @@ public class EventManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (i > events.Length - 1)
+        {
+
+            //End the level
+            return;
+
+        }
+
+
         countUp += Time.deltaTime;
 
         if (events[i].spawnTime <= countUp)
         {
 
-            Instantiate(events[i].E, gameObject.transform.position, Quaternion.identity, gameObject.transform);
+            GameObject E = Instantiate(events[i].E, gameObject.transform.position, Quaternion.identity, gameObject.transform);
+
+            E.GetComponent<EnemyBase>().SpawnTime = events[i].spawnTime;
 
             i++;
         }

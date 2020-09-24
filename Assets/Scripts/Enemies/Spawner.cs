@@ -44,7 +44,7 @@ public class Spawner : MonoBehaviour
 
         GameObject This = Instantiate(enemy, transform.position, Quaternion.identity);
 
-        This.GetComponent<Shooter>().waypoint = wayPoints[i];
+        //This.GetComponent<Shooter>().waypoint = wayPoints[i];
 
         i++;
 
