@@ -7,6 +7,8 @@ using UnityEngine;
 public class EventManager : MonoBehaviour
 {
 
+    public int DEBUGStartTime = 0;
+
     public GameObject empty;
 
     public int Bookmark;
@@ -21,6 +23,8 @@ public class EventManager : MonoBehaviour
     float countUp = 0;
 
     
+
+    
     
 
 
@@ -32,7 +36,16 @@ public class EventManager : MonoBehaviour
 
         SortByTime();
 
-        empty = GameObject.Find("EmptyEvent");
+        //empty = GameObject.Find("EmptyEvent");
+
+        if (DEBUGStartTime != 0)
+        {
+
+            countUp = DEBUGStartTime;
+
+            StartTime();
+
+        }
     }
 
     // Update is called once per frame
@@ -105,6 +118,25 @@ public class EventManager : MonoBehaviour
 
         events[events.Length -1].E = empty;
         events[events.Length-1].spawnTime = events[events.Length - 2].spawnTime + 1;
+
+
+    }
+
+    void StartTime()
+    {
+
+        foreach(Event EV in events)
+        {
+
+            if(EV.spawnTime < countUp)
+            {
+
+                i++;
+
+            }
+
+        }
+
 
 
     }
