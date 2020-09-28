@@ -29,7 +29,8 @@ public class PlayerManager : MonoBehaviour
     {
         
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") &&
+            GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>().isPaused == false)
         {
             if (GetComponent<PowerUp>().On == true)
             {
@@ -42,11 +43,18 @@ public class PlayerManager : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("Fire3") && rolling == false)
+        if (Input.GetButtonDown("Fire3") && rolling == false &&
+            GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>().isPaused==false)
         {
 
             BarrellRoll();
 
+        }
+
+        // Pause:
+        if(Input.GetKeyUp(KeyCode.Escape))
+        {
+            GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>().TogglePause();
         }
 
         if (rolling == true)

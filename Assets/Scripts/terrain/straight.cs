@@ -21,9 +21,11 @@ public class straight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        temp.z -= speed * Time.fixedDeltaTime;
-        transform.position = temp;
+        if(GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>().isPaused == false)
+        {
+            temp.z -= speed * Time.fixedDeltaTime;
+            transform.position = temp;
+        }
 
     }
 
