@@ -44,7 +44,7 @@ public class TerrainManager : MonoBehaviour
 
         timer -= Time.fixedDeltaTime;
 
-        if (timer <=0)
+        if (timer <0.02)
         {
 
             Instantiate(Segments[i], transform.position, Quaternion.identity, gameObject.transform);
@@ -56,6 +56,10 @@ public class TerrainManager : MonoBehaviour
         }
 
     }
+
+
+
+
 
     /*public void SpawnTerrain()
     {
