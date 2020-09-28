@@ -7,7 +7,7 @@ using UnityEngine;
 public class EventManager : MonoBehaviour
 {
 
-    public int DEBUGStartTime = 0;
+    public float DEBUGStartTime = 0;
 
     public GameObject empty;
 
@@ -62,16 +62,35 @@ public class EventManager : MonoBehaviour
 
 
         countUp += Time.deltaTime;
+        Spawn();
 
+        
+    }
+
+    void Spawn()
+    {
+
+        if (i > events.Length - 1)
+        {
+
+            return;
+
+        }
         if (events[i].spawnTime <= countUp)
         {
+
+            
 
             GameObject E = Instantiate(events[i].E, gameObject.transform.position, Quaternion.identity, gameObject.transform);
 
             E.GetComponent<EnemyBase>().SpawnTime = events[i].spawnTime;
 
             i++;
+
+            Spawn();
         }
+
+
     }
 
     public void ShiftEvents()
@@ -147,6 +166,6 @@ public struct Event
 {
     public GameObject E;
 
-    public int spawnTime;
+    public float spawnTime;
 
 }

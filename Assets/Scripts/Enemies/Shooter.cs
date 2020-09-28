@@ -37,7 +37,7 @@ public class Shooter : MonoBehaviour
     {
         player = GameObject.Find("Ship");
 
-        Seed = GetComponent<EnemyBase>().SpawnTime;
+        Seed = (int)GetComponent<EnemyBase>().SpawnTime;
 
         i = 0;
 

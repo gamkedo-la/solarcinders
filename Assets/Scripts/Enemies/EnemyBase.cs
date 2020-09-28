@@ -11,7 +11,7 @@ public class EnemyBase : MonoBehaviour
     public float HitRegTimer = 0.3f;
     public float HitRegTimerReset = 0.3f;
 
-    public int SpawnTime;
+    public float SpawnTime;
 
     // Start is called before the first frame update
     void Start()
