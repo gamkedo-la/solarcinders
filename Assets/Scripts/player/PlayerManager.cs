@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour
     public int Health = 100;
 
     public StatusBars HP;
+    public AudioSource warningSFX;
 
     public bool rolling = false;
     public float rolltimer;
@@ -21,7 +22,7 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(LowHealthChecker());
     }
 
     // Update is called once per frame
@@ -83,6 +84,22 @@ public class PlayerManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+    }
+
+    IEnumerator LowHealthChecker()
+    {
+        while(true)
+        {
+            if(Health <=25)
+            {
+                warningSFX.Play();
+                yield return new WaitForSeconds(warningSFX.clip.length+0.2f);
+            }
+            else
+            {
+                yield return new WaitForSeconds(0.1f);
+            }
+        }
     }
 
     void OnCollisionEnter(Collision collide)
