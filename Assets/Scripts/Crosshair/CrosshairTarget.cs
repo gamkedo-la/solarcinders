@@ -16,11 +16,13 @@ public class CrosshairTarget : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
-        Vector3 temp = gameObject.transform.position;
-        temp.x = A.transform.position.x;
-        temp.y = A.transform.position.y;
-        temp.z = gameObject.transform.position.z;
-        gameObject.transform.position = temp;
+        if(A!=null)
+        {
+            Vector3 temp = gameObject.transform.position;
+            temp.x = A.transform.position.x;
+            temp.y = A.transform.position.y;
+            temp.z = gameObject.transform.position.z;
+            gameObject.transform.position = temp;
+        }
     }
 }

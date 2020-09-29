@@ -60,8 +60,10 @@ public class Shooter : MonoBehaviour
 
         if (state == 1)
         {
-
-            transform.LookAt(player.transform);
+            if(player!=null)
+            {
+                transform.LookAt(player.transform);
+            }
 
             dist = Vector3.Distance(EndPoint, gameObject.transform.position);
 
@@ -89,7 +91,10 @@ public class Shooter : MonoBehaviour
             ShotTimer -= Time.deltaTime;
             StateTimer -= Time.deltaTime;
 
-            transform.LookAt(player.transform);
+            if(player!=null)
+            {
+                transform.LookAt(player.transform);
+            }
             
 
             if (ShotTimer <= 0)

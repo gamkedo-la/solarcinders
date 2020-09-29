@@ -22,30 +22,30 @@ public class Waypoints : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        temp.z = transform.position.z;
-        temp.y = player.transform.position.y + y;
-        temp.x = player.transform.position.x + x;
-
-        if (temp.y > 14)
+        if(player!=null)
         {
-            temp.y = 14;
-        }
-        if (temp.y < -9)
-        {
-            temp.y = -9;
-        }
-        if (temp.x > 22)
-        {
-            temp.x = 22;
-        }
-        if (temp.x < -22)
-        {
-            temp.x = -22;
-        }
+            temp.z = transform.position.z;
+            temp.y = player.transform.position.y + y;
+            temp.x = player.transform.position.x + x;
 
-        transform.position = temp;
+            if (temp.y > 14)
+            {
+                temp.y = 14;
+            }
+            if (temp.y < -9)
+            {
+                temp.y = -9;
+            }
+            if (temp.x > 22)
+            {
+                temp.x = 22;
+            }
+            if (temp.x < -22)
+            {
+                temp.x = -22;
+            }
 
-
+            transform.position = temp;
+        }
     }
 }

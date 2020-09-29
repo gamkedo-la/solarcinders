@@ -19,24 +19,26 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        temp = ship.transform.position;
-        temp.x /= 3;
-       // temp.y += 5;
-        temp.y /= 3;
-        /*
-        if (temp.y >= 0)
+        if(ship!=null)
         {
-            temp.y += 2;
+            temp = ship.transform.position;
+            temp.x /= 3;
+            // temp.y += 5;
+            temp.y /= 3;
+            /*
+            if (temp.y >= 0)
+            {
+                temp.y += 2;
+            }
+            else
+            {
+                temp.y -= 2;
+            }*/
+
+            temp.z -= 20;
+
+            transform.position = temp;
         }
-        else
-        {
-            temp.y -= 2;
-        }*/
-
-        temp.z -= 20;
-
-        transform.position = temp;
 
     }
 }
