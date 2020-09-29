@@ -118,7 +118,7 @@ public class HomingMissle : MonoBehaviour
 
         }
 
-        if(collision.collider.tag == "player")
+        if(collision.collider.tag == "Player")
         {
 
             TakeDamage(10);

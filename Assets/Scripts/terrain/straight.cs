@@ -29,6 +29,12 @@ public class straight : MonoBehaviour
             transform.position = temp;
         }
 
+        if (transform.position.z < -150)
+        {
+
+            Destroy(gameObject);
+        }
+
     }
 
     /*public void OnTriggerEnter(Collider other)
