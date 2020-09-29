@@ -26,6 +26,8 @@ public class Shooter : MonoBehaviour
     public float mod;
     public float dist;
 
+    public AudioSource explodeSFX;
+
     int Seed;
 
     int i = 0;
@@ -46,17 +48,12 @@ public class Shooter : MonoBehaviour
         FlightPath();
 
         EndPoint = waypoints[i].transform.position;
-
+        StartCoroutine(CheckDeathLoop());
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (HP <= 0)
-        {
-            Death();
-        }
 
         if (state == 1)
         {
@@ -140,14 +137,31 @@ public class Shooter : MonoBehaviour
 
 
     }
+
+    IEnumerator CheckDeathLoop()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(0.1f);
+            if (HP <= 0)
+            {
+                Death();
+
+                // Wait for SFX before destroying:
+                yield return new WaitForSeconds(explodeSFX.clip.length);
+                Destroy(gameObject);
+            }
+        }
+    }
     void Death()
     {
+        // send to the void, away from the player:
+        gameObject.transform.position = new Vector3(10000, 10000, 10000);
 
-        Destroy(gameObject);
         GameObject player = GameObject.Find("Ship");
         player.GetComponent<Combo>().Add();
         player.GetComponent<Score>().ScoreChange(PointsGiven);
-        
+        explodeSFX.Play();
 
     }
 
