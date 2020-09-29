@@ -31,7 +31,8 @@ public class Flyby : MonoBehaviour
     public float shotTimer;
     public float Reset;
 
-   
+    public AudioSource explodeSFX;
+
 
     // Start is called before the first frame update
     void Start()
@@ -68,6 +69,7 @@ public class Flyby : MonoBehaviour
 
         Gun = transform.Find("Gun").gameObject;
         Gun.GetComponent<LookAt>().target = (GameObject.Find("Ship"));
+        StartCoroutine(CheckDeathLoop());
 
     }
 
@@ -133,13 +135,6 @@ public class Flyby : MonoBehaviour
 
         Health -= dam;
 
-
-        if(Health <= 0)
-        {
-
-
-
-        }
     }
 
     void Despawn()
@@ -149,13 +144,31 @@ public class Flyby : MonoBehaviour
 
     }
 
+    IEnumerator CheckDeathLoop()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.1f);
+            if (Health <= 0)
+            {
+                Death();
+
+                // Wait for SFX before destroying:
+                yield return new WaitForSeconds(explodeSFX.clip.length);
+                Destroy(gameObject);
+            }
+        }
+    }
     void Death()
     {
+        // send to the void, away from the player:
+        gameObject.transform.position = new Vector3(10000, 10000, 10000);
 
-        Destroy(gameObject);
         GameObject player = GameObject.Find("Ship");
         player.GetComponent<Combo>().Add();
         player.GetComponent<Score>().ScoreChange(PointsGiven);
+        player.GetComponent<PowerUp>().Add(GetComponent<Charge>().charge);
+        explodeSFX.Play();
 
     }
 

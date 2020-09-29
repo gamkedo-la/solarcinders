@@ -63,16 +63,10 @@ public class Shooter : MonoBehaviour
             }
 
             dist = Vector3.Distance(EndPoint, gameObject.transform.position);
-
-            
-
+                        
             speed = Mathf.Pow(dist, POW) + mod;
 
-            float step = speed * Time.deltaTime;
-
-            Vector3 temp = new Vector3(0, 0, 0);
-
-            
+            float step = speed * Time.deltaTime;          
 
             gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, EndPoint, step);
 
@@ -161,6 +155,7 @@ public class Shooter : MonoBehaviour
         GameObject player = GameObject.Find("Ship");
         player.GetComponent<Combo>().Add();
         player.GetComponent<Score>().ScoreChange(PointsGiven);
+        player.GetComponent<PowerUp>().Add(GetComponent<Charge>().charge);
         explodeSFX.Play();
 
     }
