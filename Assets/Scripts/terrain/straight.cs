@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class straight : MonoBehaviour
 {
@@ -21,7 +22,8 @@ public class straight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>().isPaused == false)
+        if(SceneManager.GetActiveScene().name != "Title_Screen" &&
+            GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>().isPaused == false)
         {
             temp.z -= speed * Time.fixedDeltaTime;
             transform.position = temp;

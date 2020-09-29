@@ -7,6 +7,7 @@ public class Shoot : MonoBehaviour
     public GameObject Laser1prefab;
     public GameObject PowerLaserPrefab;
     public Transform gun;
+    public AudioSource shootingSFX;
     GameObject GameManager;
 
     // Start is called before the first frame update
@@ -29,7 +30,7 @@ public class Shoot : MonoBehaviour
                         Laser1prefab,
                         gun.position,
                         gun.rotation, GameManager.transform);
-
+        shootingSFX.Play();
     }
 
     public void PowerShot()
@@ -38,6 +39,6 @@ public class Shoot : MonoBehaviour
                         PowerLaserPrefab,
                         gun.position,
                         gun.rotation, GameManager.transform);
-
+        shootingSFX.Play();
     }
 }
