@@ -9,7 +9,7 @@ public class straight : MonoBehaviour
 
     Vector3 temp = new Vector3(0, 0, 0);
 
-    public int speed;
+    public float speed;
 
     // Start is called before the first frame update
     void Start()
