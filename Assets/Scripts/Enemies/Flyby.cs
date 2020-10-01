@@ -5,23 +5,23 @@ using UnityEngine;
 public class Flyby : MonoBehaviour
 {
 
-    public enum RL { right, left};
-    public enum TB { bot, mid, top};
+    //public enum RL { right, left};
+    //public enum TB { bot, mid, top};
 
-    public RL StartSide;
+    //public RL StartSide;
 
-    public TB tB;
+    //public TB tB;
 
     public int Sw;
 
-    Vector3 SpawnPos = new Vector3(50, 0, 50);
+    //Vector3 SpawnPos = new Vector3(50, 0, 50);
 
     Vector3 Temp = new Vector3(0, 0, 0);
 
     public float speed;
     float step;
 
-    int state = 1;
+    int state = 0;
 
     public int Health;
     public int PointsGiven;
@@ -38,18 +38,18 @@ public class Flyby : MonoBehaviour
     void Start()
     {
         
-        if (StartSide == RL.left)
+        if (transform.position.x < 0)
         {
 
             Sw = 1;
         }
-        else if (StartSide == RL.right)
+        else if (transform.position.x > 0)
         {
             Sw = -1;
 
         }
 
-        if(tB == TB.top)
+       /* if(tB == TB.top)
         {
 
             SpawnPos.y += 7;
@@ -64,7 +64,9 @@ public class Flyby : MonoBehaviour
         }
 
         SpawnPos.x *= Sw;
-        transform.position = SpawnPos;
+        transform.position = SpawnPos;*/
+
+
         state = 1;
 
         Gun = transform.Find("Gun").gameObject;
@@ -77,42 +79,50 @@ public class Flyby : MonoBehaviour
     void Update()
     {
 
-        step = speed * Time.deltaTime;
-
-        Temp = transform.position;
-        Temp.x -= step * Sw;
-
-        transform.position = Temp;
-
-        if (Mathf.Abs(transform.position.x) > 50)
+        if (GetComponent<EnemyBase>().Active == true)
         {
+            state = 1;
 
-            Sw *= -1;
+        }
+        if (state > 0)
+        {
+            step = speed * Time.deltaTime;
 
             Temp = transform.position;
-            Temp.z -= 8;
+            Temp.x -= step * Sw;
+
             transform.position = Temp;
 
-            state++;
+            if (Mathf.Abs(transform.position.x) > 50)
+            {
 
-        }
+                Sw *= -1;
 
-        if (state > 3)
-        {
+                Temp = transform.position;
+                Temp.z -= 8;
+                transform.position = Temp;
 
-            Despawn();
+                state++;
 
-        }
+            }
 
-        shotTimer -= Time.deltaTime;
+            if (state > 3)
+            {
 
-        if (shotTimer <= 0)
-        {
+                Despawn();
 
-            Gun.GetComponent<Shoot>().Fire();
+            }
 
-            shotTimer = Reset;
+            shotTimer -= Time.deltaTime;
 
+            if (shotTimer <= 0)
+            {
+
+                Gun.GetComponent<Shoot>().Fire();
+
+                shotTimer = Reset;
+
+            }
         }
 
     }

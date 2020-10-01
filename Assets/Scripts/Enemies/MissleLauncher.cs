@@ -15,7 +15,7 @@ public class MissleLauncher : MonoBehaviour
     float ShotTimer = 0.5f;
     float ShotReset = 1.5f;
 
-    public int state = 1;
+    public int state = 0;
     public int HP = 50;
 
     public int PointsGiven = 80;
@@ -64,6 +64,12 @@ public class MissleLauncher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(GetComponent<EnemyBase>().Active == true)
+        {
+            state = 1;
+
+        }
+
 
         if (state == 1)
         {

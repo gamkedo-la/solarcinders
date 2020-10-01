@@ -15,7 +15,7 @@ public class Shooter : MonoBehaviour
     float StateReset = 5.0f;
 
 
-    public int state = 1;
+    public int state = 0;
     public int HP = 1;
 
     public int PointsGiven = 10;
@@ -54,6 +54,12 @@ public class Shooter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (GetComponent<EnemyBase>().Active == true)
+        {
+            state = 1;
+
+        }
 
         if (state == 1)
         {

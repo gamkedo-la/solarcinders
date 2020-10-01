@@ -13,6 +13,8 @@ public class EnemyBase : MonoBehaviour
 
     public float SpawnTime;
 
+    public bool Active = false;
+
     // Start is called before the first frame update
     void Start()
     {

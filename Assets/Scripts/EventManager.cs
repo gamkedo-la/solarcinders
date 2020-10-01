@@ -20,9 +20,11 @@ public class EventManager : MonoBehaviour
 
     int i = 0;
 
+    int j = 0;
+
     float countUp = 0;
 
-    
+    GameObject EnemyList;
 
     
     
@@ -34,9 +36,15 @@ public class EventManager : MonoBehaviour
         i = 0;
         countUp = 0;
 
+
+        EnemyList = GameObject.Find("EnemyList");
+        Import();
+
         SortByTime();
 
         //empty = GameObject.Find("EmptyEvent");
+
+        
 
         if (DEBUGStartTime != 0)
         {
@@ -79,11 +87,13 @@ public class EventManager : MonoBehaviour
         if (events[i].spawnTime <= countUp)
         {
 
-            
 
-            GameObject E = Instantiate(events[i].E, gameObject.transform.position, Quaternion.identity, gameObject.transform);
 
-            E.GetComponent<EnemyBase>().SpawnTime = events[i].spawnTime;
+            events[i].E.transform.position = events[i].spawnPos;
+
+            events[i].E.GetComponent<EnemyBase>().SpawnTime = events[i].spawnTime;
+
+            events[i].E.GetComponent<EnemyBase>().Active = true;
 
             i++;
 
@@ -96,9 +106,9 @@ public class EventManager : MonoBehaviour
     public void ShiftEvents()
     {
 
-        for (int j = Bookmark; j < events.Length; j++)
+        for (int k = Bookmark; k < events.Length; k++)
         {
-            events[j].spawnTime += Shift;
+            events[k].spawnTime += Shift;
 
         }
 
@@ -159,6 +169,32 @@ public class EventManager : MonoBehaviour
 
 
     }
+
+    void Import()
+    {
+
+        events = new Event[EnemyList.transform.childCount];
+
+        foreach(GameObject EM in EnemyList.transform)
+        {
+
+            events[j].E = EM;
+
+            events[j].spawnTime = EM.transform.position.z - 10000;
+
+            events[j].spawnPos = EM.transform.position;
+            events[j].spawnPos.z -= 10000;
+            events[j].spawnPos.z -= events[j].spawnTime;
+
+            j++;
+
+        }
+
+
+    }
+
+
+
 }
 
 [System.Serializable]
@@ -167,5 +203,7 @@ public struct Event
     public GameObject E;
 
     public float spawnTime;
+
+    public Vector3 spawnPos;
 
 }

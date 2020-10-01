@@ -12,9 +12,13 @@ public class TerrainManager : MonoBehaviour
 
     public int l;
 
-    public float timer = 2;
+    float timer = 2;
 
-    public float reset = 2;
+    float reset = 2;
+
+    public float terrainSize = 0;
+
+    public float terrainSpeed = 1;
 
     List<GameObject> kids = new List<GameObject>();
 
@@ -25,16 +29,20 @@ public class TerrainManager : MonoBehaviour
         Clear();
 
 
-        for (int j = 0; j < 11; j++)
+        for (int j = 0; j < 6; j++)
         {
 
-            SpawnPos.z += 100;
+            SpawnPos.z += terrainSize;
 
             Instantiate(Segments[j], SpawnPos, Quaternion.identity, gameObject.transform);
                        
         }
 
         i = 10;
+
+        
+        timer = terrainSize / terrainSpeed;
+        reset = timer;
 
     }
 
@@ -81,7 +89,7 @@ public class TerrainManager : MonoBehaviour
         foreach (GameObject chunk in Segments)
         {
 
-            SpawnPos.z += 100;
+            SpawnPos.z += terrainSize;
             Instantiate(chunk, SpawnPos, Quaternion.identity, gameObject.transform);
 
         }

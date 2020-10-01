@@ -49,6 +49,12 @@ public class Rammer : MonoBehaviour
     void Update()
     {
 
+        if (GetComponent<EnemyBase>().Active == true)
+        {
+            state = 1;
+
+        }
+
         if (state == 1)
         {
             if (player != null)
