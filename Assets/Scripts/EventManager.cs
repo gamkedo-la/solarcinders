@@ -175,16 +175,16 @@ public class EventManager : MonoBehaviour
 
         events = new Event[EnemyList.transform.childCount];
 
-        foreach(GameObject EM in EnemyList.transform)
+        foreach(Transform EM in EnemyList.transform)
         {
 
-            events[j].E = EM;
+            events[j].E = EM.gameObject;
 
-            events[j].spawnTime = EM.transform.position.z - 10000;
+            events[j].spawnTime = EM.position.z - 10000;
 
             events[j].spawnPos = EM.transform.position;
-            events[j].spawnPos.z -= 10000;
-            events[j].spawnPos.z -= events[j].spawnTime;
+            
+            events[j].spawnPos.z = events[j].E.GetComponent<EnemyBase>().ZSpawn;
 
             j++;
 

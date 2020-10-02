@@ -81,11 +81,7 @@ public class Flyby : MonoBehaviour
 
         if (GetComponent<EnemyBase>().Active == true)
         {
-            state = 1;
-
-        }
-        if (state > 0)
-        {
+            
             step = speed * Time.deltaTime;
 
             Temp = transform.position;

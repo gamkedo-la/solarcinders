@@ -15,7 +15,7 @@ public class Shooter : MonoBehaviour
     float StateReset = 5.0f;
 
 
-    public int state = 0;
+    public int state = 1;
     public int HP = 1;
 
     public int PointsGiven = 10;
@@ -32,7 +32,7 @@ public class Shooter : MonoBehaviour
 
     int i = 0;
 
-    Vector3 EndPoint;
+    public Vector3 EndPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -45,9 +45,9 @@ public class Shooter : MonoBehaviour
 
         waypoints = new Transform[4];
 
-        FlightPath();
+        //FlightPath();
 
-        EndPoint = waypoints[i].transform.position;
+        
         StartCoroutine(CheckDeathLoop());
     }
 
@@ -57,83 +57,96 @@ public class Shooter : MonoBehaviour
 
         if (GetComponent<EnemyBase>().Active == true)
         {
-            state = 1;
+            if(waypoints[0] == null)
+            {
+                FlightPath();
+                EndPoint = waypoints[i].position;
 
+            }
+
+
+            if (state == 1)
+            {
+                if (player != null)
+                {
+                    transform.LookAt(player.transform);
+                }
+
+                dist = Vector3.Distance(EndPoint, gameObject.transform.position);
+
+                speed = Mathf.Pow(dist, POW) + mod;
+
+                float step = speed * Time.deltaTime;
+
+                gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, EndPoint, step);
+
+                if (dist < .1)
+                {
+                    state = 2;
+
+                }
+
+            }
+            if (state == 2)
+            {
+                ShotTimer -= Time.deltaTime;
+                StateTimer -= Time.deltaTime;
+
+                if (player != null)
+                {
+                    transform.LookAt(player.transform);
+                }
+
+
+                if (ShotTimer <= 0)
+                {
+
+                    gameObject.GetComponent<Shoot>().Fire();
+                    ShotTimer = ShotReset;
+
+                }
+                if (StateTimer <= 0 && i >= 3)
+                {
+
+                    state = 3;
+
+                }
+                else if (StateTimer <= 0)
+                {
+                    i++;
+                    state = 1;
+                    StateTimer = StateReset;
+                    EndPoint = waypoints[i].transform.position;
+
+                }
+
+            }
+            if (state == 3)
+            {
+
+                gameObject.transform.rotation = Quaternion.identity;
+                float step = mod * Time.deltaTime * 2;
+                Vector3 temp = transform.position;
+                temp.z -= step * 5;
+                gameObject.transform.position = temp;
+
+
+                if (gameObject.transform.position.z < -50)
+                {
+                    Despawn();
+
+                }
+
+            }
         }
 
-        if (state == 1)
-        {
-            if(player!=null)
-            {
-                transform.LookAt(player.transform);
-            }
 
-            dist = Vector3.Distance(EndPoint, gameObject.transform.position);
-                        
-            speed = Mathf.Pow(dist, POW) + mod;
+    }
 
-            float step = speed * Time.deltaTime;          
-
-            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, EndPoint, step);
-
-            if(dist < .1)
-            {
-                state = 2;
-
-            }
-
-        }
-        if (state == 2)
-        {
-            ShotTimer -= Time.deltaTime;
-            StateTimer -= Time.deltaTime;
-
-            if(player!=null)
-            {
-                transform.LookAt(player.transform);
-            }
-            
-
-            if (ShotTimer <= 0)
-            {
-
-                gameObject.GetComponent<Shoot>().Fire();
-                ShotTimer = ShotReset;
-
-            }
-            if (StateTimer <= 0 && i >= 3)
-            {
-
-                state = 3;
-
-            }
-            else if (StateTimer <= 0)
-            {
-                i++;
-                state = 1;
-                StateTimer = StateReset;
-                EndPoint = waypoints[i].transform.position;
-
-            }
-
-        }
-        if (state == 3)
-        {
-
-            gameObject.transform.rotation = Quaternion.identity;
-            float step = mod * Time.deltaTime * 2;
-            Vector3 temp = transform.position;
-            temp.z -= step*5;
-            gameObject.transform.position = temp;
-
-
-            if (gameObject.transform.position.z < -50)
-            {
-                Despawn();
-
-            }
-
-        }
+    void WakeUp()
+    {
+        EndPoint = waypoints[i].transform.position;
+        state = 1;
 
 
     }

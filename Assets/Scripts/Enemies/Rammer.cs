@@ -12,7 +12,7 @@ public class Rammer : MonoBehaviour
     float ShotReset = 2.0f;
 
 
-    public int state = 1;
+    public int state = 0;
     public int HP = 1;
 
     public int PointsGiven = 10;
@@ -41,7 +41,7 @@ public class Rammer : MonoBehaviour
 
         FlightPath();
 
-        EndPoint = waypoint.position;
+        
         StartCoroutine(CheckDeathLoop());
     }
 
@@ -51,59 +51,71 @@ public class Rammer : MonoBehaviour
 
         if (GetComponent<EnemyBase>().Active == true)
         {
-            state = 1;
 
-        }
-
-        if (state == 1)
-        {
-            if (player != null)
+            if(EndPoint.z == 0)
             {
-                transform.LookAt(player.transform);
-            }
-
-            dist = Vector3.Distance(EndPoint, gameObject.transform.position);
-
-            speed = Mathf.Pow(dist, POW) + mod;
-
-            float step = speed * Time.deltaTime;
-
-            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, EndPoint, step);
-
-            if (dist < .1)
-            {
-                state = 2;
+                EndPoint = waypoint.position;
 
             }
 
-        }
-        if (state == 2)
-        {
-            ShotTimer -= Time.deltaTime;
-            
 
-            if (player != null && ShotTimer > 0)
+            if (state == 1)
             {
-                transform.LookAt(player.transform);
+                if (player != null)
+                {
+                    transform.LookAt(player.transform);
+                }
+
+                dist = Vector3.Distance(EndPoint, gameObject.transform.position);
+
+                speed = Mathf.Pow(dist, POW) + mod;
+
+                float step = speed * Time.deltaTime;
+
+                gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, EndPoint, step);
+
+                if (dist < .1)
+                {
+                    state = 2;
+
+                }
+
             }
-            if(ShotTimer <= 0)
+            if (state == 2)
             {
-                speed = 50;
-                Vector3 temp = gameObject.transform.position;
-                temp += gameObject.transform.forward * speed * Time.deltaTime;
-                gameObject.transform.position = temp;
+                ShotTimer -= Time.deltaTime;
+
+
+                if (player != null && ShotTimer > 0)
+                {
+                    transform.LookAt(player.transform);
+                }
+                if (ShotTimer <= 0)
+                {
+                    speed = 50;
+                    Vector3 temp = gameObject.transform.position;
+                    temp += gameObject.transform.forward * speed * Time.deltaTime;
+                    gameObject.transform.position = temp;
+
+                }
+
+
 
             }
 
-           
+            if (transform.position.z < 0)
+            {
 
+                Despawn();
+            }
         }
 
-        if (transform.position.z < 0)
-        {
+    }
 
-            Despawn();
-        }
+    void WakeUp()
+    {
+        EndPoint = waypoint.position;
+        state = 1;
 
 
     }

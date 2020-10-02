@@ -15,7 +15,7 @@ public class MissleLauncher : MonoBehaviour
     float ShotTimer = 0.5f;
     float ShotReset = 1.5f;
 
-    public int state = 0;
+    public int state = 1;
     public int HP = 50;
 
     public int PointsGiven = 80;
@@ -64,59 +64,59 @@ public class MissleLauncher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GetComponent<EnemyBase>().Active == true)
+        if (GetComponent<EnemyBase>().Active == true)
         {
-            state = 1;
-
-        }
 
 
-        if (state == 1)
-        {
-            
-            dist = Vector3.Distance(EndPoint, gameObject.transform.position);
 
-            speed = Mathf.Pow(dist, POW) + mod;
 
-            float step = speed * Time.deltaTime;
-
-            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, EndPoint, step);
-
-            if (dist < .1)
+            if (state == 1)
             {
-                state = 2;
+
+                dist = Vector3.Distance(EndPoint, gameObject.transform.position);
+
+                speed = Mathf.Pow(dist, POW) + mod;
+
+                float step = speed * Time.deltaTime;
+
+                gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, EndPoint, step);
+
+                if (dist < .1)
+                {
+                    state = 2;
+
+                }
 
             }
-
-        }
-        if(state == 2)
-        {
-
-            ShotTimer -= Time.deltaTime;
-
-            if(ShotTimer <= 0)
+            if (state == 2)
             {
-                if(side == 1)
+
+                ShotTimer -= Time.deltaTime;
+
+                if (ShotTimer <= 0)
                 {
+                    if (side == 1)
+                    {
 
-                    Instantiate(Missile, LeftLauncher.position, Quaternion.identity);
-                    side *= -1;
+                        Instantiate(Missile, LeftLauncher.position, Quaternion.identity);
+                        side *= -1;
 
-                    ShotTimer = ShotReset;
-                    return;
+                        ShotTimer = ShotReset;
+                        return;
+                    }
+                    if (side == -1)
+                    {
+
+                        Instantiate(Missile, RightLauncher.position, Quaternion.identity);
+                        side *= -1;
+
+                        ShotTimer = ShotReset;
+                        return;
+                    }
+
+
+
                 }
-                if (side == -1)
-                {
-
-                    Instantiate(Missile, RightLauncher.position, Quaternion.identity);
-                    side *= -1;
-
-                    ShotTimer = ShotReset;
-                    return;
-                }
-
-                
-
             }
         }
     }
