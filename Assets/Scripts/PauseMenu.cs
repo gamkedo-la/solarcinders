@@ -7,11 +7,7 @@ using UnityEngine.UI;
 public class PauseMenu : MonoBehaviour
 {
     public bool isPaused = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
 
     // Update is called once per frame
     void Update()
@@ -45,5 +41,11 @@ public class PauseMenu : MonoBehaviour
     {
         isPaused = false;
         SceneManager.LoadScene("Title_Screen");
+    }
+
+    public void Restart()
+    {
+        isPaused = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
