@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PauseMenu : MonoBehaviour
 {
     public bool isPaused = false;
-
+    public AudioSource hoverSFX;
 
     // Update is called once per frame
     void Update()
@@ -47,5 +47,13 @@ public class PauseMenu : MonoBehaviour
     {
         isPaused = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void PlayHoverSFX()
+    {
+        if(isPaused)
+        {
+            hoverSFX.Play();
+        }
     }
 }
