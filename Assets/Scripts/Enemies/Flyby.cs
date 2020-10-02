@@ -21,7 +21,7 @@ public class Flyby : MonoBehaviour
     public float speed;
     float step;
 
-    int state = 0;
+    public int state = 0;
 
     public int Health;
     public int PointsGiven;
@@ -41,11 +41,11 @@ public class Flyby : MonoBehaviour
         if (transform.position.x < 0)
         {
 
-            Sw = 1;
+            Sw = -1;
         }
         else if (transform.position.x > 0)
         {
-            Sw = -1;
+            Sw = 1;
 
         }
 
