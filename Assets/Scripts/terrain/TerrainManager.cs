@@ -29,7 +29,7 @@ public class TerrainManager : MonoBehaviour
         Clear();
 
 
-        for (int j = 0; j < 6; j++)
+        for (int j = 0; j < ((1000/terrainSize) + 1); j++)
         {
 
             SpawnPos.z += terrainSize;
@@ -55,7 +55,7 @@ public class TerrainManager : MonoBehaviour
         if (timer <0.02)
         {
 
-            Instantiate(Segments[i], transform.position, Quaternion.identity, gameObject.transform);
+            Instantiate(Segments[i], SpawnPos, Quaternion.identity, gameObject.transform);
 
             timer = reset;
 
