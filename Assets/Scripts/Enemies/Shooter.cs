@@ -32,7 +32,7 @@ public class Shooter : MonoBehaviour
 
     int i = 0;
 
-    public Vector3 EndPoint;
+    public Vector3 EndPoint = new Vector3(0,0,0);
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +43,7 @@ public class Shooter : MonoBehaviour
 
         i = 0;
 
-        waypoints = new Transform[4];
+        
 
         //FlightPath();
 
@@ -60,6 +60,13 @@ public class Shooter : MonoBehaviour
             if(waypoints[0] == null)
             {
                 FlightPath();
+                
+
+
+            }
+            if(EndPoint.z == 0)
+            {
+
                 EndPoint = waypoints[i].position;
 
             }
@@ -105,10 +112,11 @@ public class Shooter : MonoBehaviour
                     ShotTimer = ShotReset;
 
                 }
-                if (StateTimer <= 0 && i >= 3)
+                if (StateTimer <= 0 && i >= waypoints.Length)
                 {
 
                     state = 3;
+                    return;
 
                 }
                 else if (StateTimer <= 0)
@@ -116,6 +124,7 @@ public class Shooter : MonoBehaviour
                     i++;
                     state = 1;
                     StateTimer = StateReset;
+                    ShotTimer = ShotReset;
                     EndPoint = waypoints[i].transform.position;
 
                 }
@@ -212,7 +221,9 @@ public class Shooter : MonoBehaviour
     void FlightPath()
     {
 
-        if(Seed % 4 == 0)
+        waypoints = new Transform[4];
+
+        if (Seed % 4 == 0)
         {
 
             waypoints[0] = GameObject.Find("WP (0)").transform;

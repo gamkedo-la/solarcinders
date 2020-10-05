@@ -52,11 +52,16 @@ public class Rammer : MonoBehaviour
         if (GetComponent<EnemyBase>().Active == true)
         {
 
-            if(EndPoint.z == 0)
+            if (waypoint == null)
             {
-                EndPoint = waypoint.position;
+                FlightPath();
+                
 
             }
+
+            EndPoint = waypoint.position;
+
+            
 
 
             if (state == 1)

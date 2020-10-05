@@ -30,9 +30,13 @@ public class Turret : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (target != null)
+
+        if (transform.position.z <= 500)
         {
-            turretWeapon.LookAt(target);
+            if (target != null)
+            {
+                turretWeapon.LookAt(target);
+            }
         }
         
         if (myEnemyBase.Active)
@@ -53,12 +57,15 @@ public class Turret : MonoBehaviour
 
     private void Update()
     {
-        ShotTimer -= Time.deltaTime;
-
-        if (ShotTimer <= 0)
+        if (transform.position.z <= 500)
         {
-            gameObject.GetComponent<Shoot>().Fire();
-            ResetShotTimer();
+            ShotTimer -= Time.deltaTime;
+
+            if (ShotTimer <= 0)
+            {
+                gameObject.GetComponent<Shoot>().Fire();
+                ResetShotTimer();
+            }
         }
     }
 
