@@ -24,20 +24,12 @@ public class PlayerShipMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        targetPos = target.transform.position;
+        
 
         dist = Vector3.Distance(targetPos, gameObject.transform.position);
 
 
-        if (dist < .4)
-        {
-
-            gameObject.transform.position = target.transform.position;
-            return;
-
-        }
-        else
-        {
+        
 
             speed = Mathf.Pow(dist, POW) + mod;
 
@@ -45,8 +37,10 @@ public class PlayerShipMovement : MonoBehaviour
             step = speed * Time.deltaTime;
 
             gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, targetPos, step);
-        }
         
+
+
+        targetPos = target.transform.position;
 
     }
 }

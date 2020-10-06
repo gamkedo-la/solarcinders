@@ -6,6 +6,7 @@ public class FarCrosshairMovement : MonoBehaviour
 {
     public GameObject target;
     public GameObject anchor;
+
     public float speed;
     float step;
     public float mod = 20;
@@ -15,6 +16,8 @@ public class FarCrosshairMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        
         
     }
 

@@ -25,33 +25,37 @@ public class CrosshairTarget : MonoBehaviour
     void Update()
     {
 
-      /*  if(player.GetComponent<PlayerManager>().rolling == true)
-        {
+        /*  if(player.GetComponent<PlayerManager>().rolling == true)
+          {
 
-            sense = 5;
+              sense = 5;
 
-        }
-        else
-        {
+          }
+          else
+          {
 
-            sense = 15;
+              sense = 15;
 
-        }
-        */
+          }
+          */
 
         temp = Anchor.transform.position;
 
-        if (((Input.GetAxis("Horizontal") * sense) > 1) || ((Input.GetAxis("Horizontal") * sense) < -1))
-        {
-            temp.x += Input.GetAxis("Horizontal") * sense;
-        }
+        
+                                                                 
+            if (((Input.GetAxis("Horizontal") * sense) > 1) || ((Input.GetAxis("Horizontal") * sense) < -1))
+            {
+                temp.x += Input.GetAxis("Horizontal") * sense;
+            }
 
-        if (((Input.GetAxis("Vertical") * sense) > 1) || ((Input.GetAxis("Vertical") * sense) < -1))
-        {
-            temp.y += Input.GetAxis("Vertical") * sense;
-        }
+            if (((Input.GetAxis("Vertical") * sense) > 1) || ((Input.GetAxis("Vertical") * sense) < -1))
+            {
+                temp.y += Input.GetAxis("Vertical") * sense;
+            }
 
-        temp.y = Mathf.Clamp(temp.y, -yBound, yBound);
+            temp.y = Mathf.Clamp(temp.y, -yBound, yBound);
+
+        
         
         gameObject.transform.position = temp;
     }
