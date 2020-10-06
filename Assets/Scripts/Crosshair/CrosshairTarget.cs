@@ -5,24 +5,54 @@ using UnityEngine;
 public class CrosshairTarget : MonoBehaviour
 {
 
-    public GameObject A;
+    public Transform Anchor;
+    Vector3 temp = new Vector3(0,0,0);
+    public int sense = 15;
+
+    GameObject player;
+
+    public int yBound = 20;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
+        player = GameObject.Find("ship");
+
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        if(A!=null)
+
+      /*  if(player.GetComponent<PlayerManager>().rolling == true)
         {
-            Vector3 temp = gameObject.transform.position;
-            temp.x = A.transform.position.x;
-            temp.y = A.transform.position.y;
-            temp.z = gameObject.transform.position.z;
-            gameObject.transform.position = temp;
+
+            sense = 5;
+
         }
+        else
+        {
+
+            sense = 15;
+
+        }
+        */
+
+        temp = Anchor.transform.position;
+
+        if (((Input.GetAxis("Horizontal") * sense) > 1) || ((Input.GetAxis("Horizontal") * sense) < -1))
+        {
+            temp.x += Input.GetAxis("Horizontal") * sense;
+        }
+
+        if (((Input.GetAxis("Vertical") * sense) > 1) || ((Input.GetAxis("Vertical") * sense) < -1))
+        {
+            temp.y += Input.GetAxis("Vertical") * sense;
+        }
+
+        temp.y = Mathf.Clamp(temp.y, -yBound, yBound);
+        
+        gameObject.transform.position = temp;
     }
 }

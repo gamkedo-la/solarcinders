@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShipTarget : MonoBehaviour
+public class movementScaler : MonoBehaviour
 {
 
     public GameObject A;

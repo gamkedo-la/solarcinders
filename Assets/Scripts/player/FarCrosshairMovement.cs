@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveTowards : MonoBehaviour
+public class FarCrosshairMovement : MonoBehaviour
 {
     public GameObject target;
     public GameObject anchor;
@@ -19,7 +19,7 @@ public class MoveTowards : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
 
         

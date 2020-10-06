@@ -93,6 +93,9 @@ public class EventManager : MonoBehaviour
 
             events[i].E.GetComponent<EnemyBase>().SpawnTime = events[i].spawnTime;
 
+            //events[i].E.transform.parent = null;
+
+            events[i].E.SetActive(true);
             events[i].E.GetComponent<EnemyBase>().Active = true;
 
             i++;

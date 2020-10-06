@@ -43,11 +43,20 @@ public class Shooter : MonoBehaviour
 
         i = 0;
 
-        
 
-        //FlightPath();
 
-        
+        if (waypoints[0] == null)
+        {
+            FlightPath();
+
+        }
+        if (EndPoint.z == 0)
+        {
+
+            EndPoint = waypoints[0].position;
+        }
+
+
         StartCoroutine(CheckDeathLoop());
     }
 
@@ -57,19 +66,8 @@ public class Shooter : MonoBehaviour
 
         if (GetComponent<EnemyBase>().Active == true)
         {
-            if(waypoints[0] == null)
-            {
-                FlightPath();
-                
-
-
-            }
-            if(EndPoint.z == 0)
-            {
-
-                EndPoint = waypoints[i].position;
-
-            }
+            
+            
 
 
             if (state == 1)
@@ -110,9 +108,10 @@ public class Shooter : MonoBehaviour
 
                     gameObject.GetComponent<Shoot>().Fire();
                     ShotTimer = ShotReset;
+                    return;
 
                 }
-                if (StateTimer <= 0 && i >= waypoints.Length)
+                if (StateTimer <= 0 && i >= waypoints.Length - 1)
                 {
 
                     state = 3;
@@ -126,6 +125,7 @@ public class Shooter : MonoBehaviour
                     StateTimer = StateReset;
                     ShotTimer = ShotReset;
                     EndPoint = waypoints[i].transform.position;
+                    return;
 
                 }
 
@@ -259,6 +259,8 @@ public class Shooter : MonoBehaviour
             waypoints[3] = GameObject.Find("WP (2)").transform;
 
         }
+
+        EndPoint = waypoints[i].position;
 
     }
 

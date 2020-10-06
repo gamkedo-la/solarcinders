@@ -39,9 +39,16 @@ public class Rammer : MonoBehaviour
         Seed = (int)GetComponent<EnemyBase>().SpawnTime;
 
 
-        FlightPath();
+        if (waypoint == null)
+        {
+            FlightPath();
 
-        
+
+        }
+
+        EndPoint = waypoint.position;
+
+
         StartCoroutine(CheckDeathLoop());
     }
 
@@ -52,14 +59,7 @@ public class Rammer : MonoBehaviour
         if (GetComponent<EnemyBase>().Active == true)
         {
 
-            if (waypoint == null)
-            {
-                FlightPath();
-                
-
-            }
-
-            EndPoint = waypoint.position;
+            
 
             
 
