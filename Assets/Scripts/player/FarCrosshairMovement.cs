@@ -7,6 +7,9 @@ public class FarCrosshairMovement : MonoBehaviour
     public GameObject target;
     public GameObject anchor;
 
+    Vector3 T = new Vector3(0, 0, 0);
+    Vector3 A = new Vector3(0, 0, 0);
+
     public float speed;
     float step;
     public float mod = 20;
@@ -16,7 +19,8 @@ public class FarCrosshairMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        T = target.transform.position;
+        A = anchor.transform.position;
         
         
     }
@@ -36,11 +40,14 @@ public class FarCrosshairMovement : MonoBehaviour
 
         if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0)
         {
-            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, anchor.transform.position, step);
+            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, A, step);
         }
         else
         {
-            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, target.transform.position, step);
+            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, T, step);
         }
+
+        T = target.transform.position;
+        A = anchor.transform.position;
     }
 }
