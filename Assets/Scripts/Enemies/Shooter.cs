@@ -11,8 +11,8 @@ public class Shooter : MonoBehaviour
     float ShotTimer = 0.5f;
     float ShotReset = 2.0f;
 
-    float StateTimer = 5.0f;
-    float StateReset = 5.0f;
+    float StateTimer = 2.5f;
+    float StateReset = 2.5f;
 
 
     public int state = 1;
@@ -123,7 +123,7 @@ public class Shooter : MonoBehaviour
                     i++;
                     state = 1;
                     StateTimer = StateReset;
-                    ShotTimer = ShotReset;
+                    ShotTimer = 0.5f;
                     EndPoint = waypoints[i].transform.position;
                     return;
 
