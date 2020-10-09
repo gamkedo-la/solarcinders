@@ -13,11 +13,24 @@ public class PowerUp : MonoBehaviour
 
     public StatusBars statusBars;
 
+    public Material wing_N;
+    public Material engine_N;
+
+    public Material wing_P;
+    public Material engine_P;
+
+    public GameObject model;
+
+    MeshRenderer rend;
+
     
     // Start is called before the first frame update
     void Start()
     {
-        
+
+        rend = model.GetComponent<MeshRenderer>();
+
+
         if(DebugStartWithFullCharge == true)
         {
             Charge = 100;
@@ -41,6 +54,9 @@ public class PowerUp : MonoBehaviour
             {
                 Charge = 0;
                 On = false;
+
+                rend.materials[0] = wing_N;
+                rend.materials[3] = engine_N;
             }
 
             statusBars.SetFill(Charge);
@@ -49,6 +65,9 @@ public class PowerUp : MonoBehaviour
         if (On == false && Input.GetButtonDown("Fire2") && Charge > 50)
         {
             On = true;
+
+            rend.materials[0] = wing_P;
+            rend.materials[3] = engine_P;
 
         }
 
