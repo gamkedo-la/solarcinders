@@ -54,9 +54,12 @@ public class PowerUp : MonoBehaviour
             {
                 Charge = 0;
                 On = false;
-
-                rend.materials[0] = wing_N;
-                rend.materials[3] = engine_N;
+                var tempmaterialarray = rend.materials;
+                tempmaterialarray[0] = wing_N;
+                tempmaterialarray[3] = engine_N;
+                rend.materials = tempmaterialarray;
+                /* rend.materials[0] = wing_N;
+                rend.materials[3] = engine_N; */
             }
 
             statusBars.SetFill(Charge);
@@ -65,9 +68,12 @@ public class PowerUp : MonoBehaviour
         if (On == false && Input.GetButtonDown("Fire2") && Charge > 50)
         {
             On = true;
-
-            rend.materials[0] = wing_P;
-            rend.materials[3] = engine_P;
+            var tempmaterialarray = rend.materials;
+            tempmaterialarray[0] = wing_P;
+            tempmaterialarray[3] = engine_P;
+            rend.materials = tempmaterialarray;
+            /* rend.materials[0] = wing_P;
+            rend.materials[3] = engine_P; */
 
         }
 
