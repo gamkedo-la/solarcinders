@@ -17,12 +17,16 @@ public class PlayerManager : MonoBehaviour
 
     int spin = 1;
 
+    GameObject model;
+
    
 
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(LowHealthChecker());
+
+        model = transform.Find("ShipContainer").gameObject;
     }
 
     // Update is called once per frame
@@ -61,7 +65,7 @@ public class PlayerManager : MonoBehaviour
         if (rolling == true)
         {
             
-            transform.Rotate(transform.forward, rollSpeed*spin);
+            model.transform.Rotate(transform.forward, rollSpeed*spin*Time.deltaTime);
             spin++;
             rolltimer -= Time.deltaTime;
 

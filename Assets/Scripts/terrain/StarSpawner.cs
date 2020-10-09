@@ -8,14 +8,22 @@ public class StarSpawner : MonoBehaviour
     public GameObject star;
     public float timer = 0;
 
+    public float resetMin;
+    public float resetMax;
 
 
     // Start is called before the first frame update
     void Start()
     {
 
-        
-           
+        if(resetMin == 0)
+        {
+            resetMin = 0.01f;
+            resetMax = 0.1f;
+
+        }
+
+        timer = Random.Range(resetMin, resetMax);
     }
 
     // Update is called once per frame
@@ -33,7 +41,7 @@ public class StarSpawner : MonoBehaviour
             
 
             Instantiate(star, spawnPosition, transform.rotation);
-            timer = Random.Range(0.01f, 0.1f);
+            timer = Random.Range(resetMin, resetMax);
 
 
         }
@@ -43,6 +51,7 @@ public class StarSpawner : MonoBehaviour
             timer -= Time.deltaTime;
 
         }
+
 
 
     }
