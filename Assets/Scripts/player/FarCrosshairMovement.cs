@@ -48,6 +48,9 @@ public class FarCrosshairMovement : MonoBehaviour
         }
 
         T = target.transform.position;
-        A = anchor.transform.position;
+        if(anchor!=null)
+        {
+            A = anchor.transform.position;
+        }
     }
 }

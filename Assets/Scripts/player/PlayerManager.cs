@@ -85,6 +85,9 @@ public class PlayerManager : MonoBehaviour
         if(Health <= 0){
 
             //Active gameover
+            GameObject.FindGameObjectWithTag("GameoverMenu").GetComponent<CanvasGroup>().alpha = 1;
+            GameObject.FindGameObjectWithTag("GameoverMenu").GetComponent<CanvasGroup>().blocksRaycasts = true;
+
             Destroy(gameObject);
         }
 

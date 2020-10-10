@@ -39,10 +39,12 @@ public class CrosshairTarget : MonoBehaviour
           }
           */
 
-        temp = Anchor.transform.position;
+        if(Anchor != null)
+        {
+            temp = Anchor.transform.position;
 
-        
-                                                                 
+
+
             if (((Input.GetAxis("Horizontal") * sense) > 1) || ((Input.GetAxis("Horizontal") * sense) < -1))
             {
                 temp.x += Input.GetAxis("Horizontal") * sense;
@@ -55,8 +57,9 @@ public class CrosshairTarget : MonoBehaviour
 
             temp.y = Mathf.Clamp(temp.y, -yBound, yBound);
 
-        
-        
-        gameObject.transform.position = temp;
+
+
+            gameObject.transform.position = temp;
+        }
     }
 }

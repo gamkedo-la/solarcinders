@@ -20,7 +20,10 @@ public class TimeCount : MonoBehaviour
     {
 
         StopWatch += Time.deltaTime;
-        text.text = StopWatch.ToString();
+        if(text!=null)
+        {
+            text.text = StopWatch.ToString();
+        }
         
     }
 }

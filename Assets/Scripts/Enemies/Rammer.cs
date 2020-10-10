@@ -146,9 +146,12 @@ public class Rammer : MonoBehaviour
         gameObject.transform.position = new Vector3(10000, 10000, 10000);
 
         GameObject player = GameObject.Find("Ship");
-        player.GetComponent<Combo>().Add();
-        player.GetComponent<Score>().ScoreChange(PointsGiven);
-        player.GetComponent<PowerUp>().Add(GetComponent<Charge>().charge);
+        if(player!=null)
+        {
+            player.GetComponent<Combo>().Add();
+            player.GetComponent<Score>().ScoreChange(PointsGiven);
+            player.GetComponent<PowerUp>().Add(GetComponent<Charge>().charge);
+        }
         explodeSFX.Play();
 
     }

@@ -15,6 +15,7 @@ public class PauseMenu : MonoBehaviour
         if(isPaused)
         {
             gameObject.GetComponent<CanvasGroup>().alpha = 1;
+            gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
             Time.timeScale = 0;
             foreach (var btn in gameObject.GetComponentsInChildren<Button>())
             {
@@ -24,6 +25,7 @@ public class PauseMenu : MonoBehaviour
         else
         {
             gameObject.GetComponent<CanvasGroup>().alpha = 0;
+            gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
             Time.timeScale = 1;
             foreach(var btn in gameObject.GetComponentsInChildren<Button>())
             {
