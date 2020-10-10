@@ -65,7 +65,7 @@ public class PlayerManager : MonoBehaviour
         if (rolling == true)
         {
             
-            model.transform.Rotate(transform.forward, rollSpeed*spin*Time.deltaTime);
+            model.transform.Rotate(transform.forward * (rollSpeed*spin*Time.deltaTime));
             spin++;
             rolltimer -= Time.deltaTime;
 
