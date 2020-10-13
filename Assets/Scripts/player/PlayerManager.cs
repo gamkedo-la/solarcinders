@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour
 
     public StatusBars HP;
     public AudioSource warningSFX;
+    public AudioSource engine;
 
     public bool rolling = false;
     public float rolltimer;
@@ -74,7 +75,21 @@ public class PlayerManager : MonoBehaviour
 
                 rolling = false;
                 spin = 1;
+                
 
+            }
+
+        }
+
+        if(rolling == false && engine.pitch > 1)
+        {
+
+            engine.pitch -= Time.deltaTime;
+
+            if(engine.pitch < 1)
+            {
+
+                engine.pitch = 1;
             }
 
         }
@@ -131,6 +146,7 @@ public class PlayerManager : MonoBehaviour
 
         rolling = true;
         rolltimer = rolltimerReset;
+        engine.pitch = 1.4f;
 
     }
 
