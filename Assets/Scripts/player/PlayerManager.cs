@@ -10,6 +10,7 @@ public class PlayerManager : MonoBehaviour
     public StatusBars HP;
     public AudioSource warningSFX;
     public AudioSource engine;
+    public AudioSource playerHitSFX;
 
     public bool rolling = false;
     public float rolltimer;
@@ -127,6 +128,7 @@ public class PlayerManager : MonoBehaviour
     void OnCollisionEnter(Collision collide)
     {
         TakeDamage(collide.gameObject.GetComponent<Damage>().damage);
+        playerHitSFX.Play();
     }
 
     void TakeDamage(int dam)
