@@ -16,6 +16,7 @@ public class straight : MonoBehaviour
     {
 
         temp = transform.position;
+        //transform.eulerAngles.Set(0, 60, 0);
 
 
     }

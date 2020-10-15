@@ -37,7 +37,7 @@ public class TerrainManager : MonoBehaviour
 
             SpawnPos.z += terrainSize;
 
-            GameObject T = Instantiate(Segments[Random.Range(0, Segments.Length - 1)], SpawnPos, Quaternion.identity, gameObject.transform);
+            GameObject T = Instantiate(Segments[Random.Range(0, Segments.Length)], SpawnPos, Quaternion.Euler(0,Random.Range(0,2)*180,0), gameObject.transform);
             T.GetComponent<straight>().speed = terrainSpeed;
 
         }
@@ -59,7 +59,7 @@ public class TerrainManager : MonoBehaviour
         if (timer <0.02)
         {
 
-            GameObject T = Instantiate(Segments[Random.Range(0, Segments.Length - 1)], SpawnPos, Quaternion.identity, gameObject.transform);
+            GameObject T = Instantiate(Segments[Random.Range(0, Segments.Length)], SpawnPos, Quaternion.Euler(0, Random.Range(0, 2) * 180, 0), gameObject.transform);
             T.GetComponent<straight>().speed = terrainSpeed;
 
             timer = reset;
