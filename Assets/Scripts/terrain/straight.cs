@@ -17,6 +17,7 @@ public class straight : MonoBehaviour
 
         temp = transform.position;
 
+
     }
 
     // Update is called once per frame

@@ -22,20 +22,24 @@ public class TerrainManager : MonoBehaviour
 
     List<GameObject> kids = new List<GameObject>();
 
+    float farplane;
+
 
     // Start is called before the first frame update
     void Start()
     {
         Clear();
 
+        farplane = GameObject.Find("SceneManager").GetComponent<levelBounds>().z;
 
-        for (int j = 0; j < ((1000/terrainSize) + 1); j++)
+        for (int j = 0; j < ((farplane/terrainSize) + 1); j++)
         {
 
             SpawnPos.z += terrainSize;
 
-            Instantiate(Segments[Random.Range(0,Segments.Length-1)], SpawnPos, Quaternion.identity, gameObject.transform);
-                       
+            GameObject T = Instantiate(Segments[Random.Range(0, Segments.Length - 1)], SpawnPos, Quaternion.identity, gameObject.transform);
+            T.GetComponent<straight>().speed = terrainSpeed;
+
         }
 
         i = 10;
@@ -55,7 +59,8 @@ public class TerrainManager : MonoBehaviour
         if (timer <0.02)
         {
 
-            Instantiate(Segments[Random.Range(0, Segments.Length - 1)], SpawnPos, Quaternion.identity, gameObject.transform);
+            GameObject T = Instantiate(Segments[Random.Range(0, Segments.Length - 1)], SpawnPos, Quaternion.identity, gameObject.transform);
+            T.GetComponent<straight>().speed = terrainSpeed;
 
             timer = reset;
 
