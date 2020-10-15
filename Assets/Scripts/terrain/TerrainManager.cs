@@ -34,7 +34,7 @@ public class TerrainManager : MonoBehaviour
 
             SpawnPos.z += terrainSize;
 
-            Instantiate(Segments[j], SpawnPos, Quaternion.identity, gameObject.transform);
+            Instantiate(Segments[Random.Range(0,Segments.Length-1)], SpawnPos, Quaternion.identity, gameObject.transform);
                        
         }
 
@@ -55,7 +55,7 @@ public class TerrainManager : MonoBehaviour
         if (timer <0.02)
         {
 
-            Instantiate(Segments[i], SpawnPos, Quaternion.identity, gameObject.transform);
+            Instantiate(Segments[Random.Range(0, Segments.Length - 1)], SpawnPos, Quaternion.identity, gameObject.transform);
 
             timer = reset;
 

@@ -22,6 +22,8 @@ public class bomber : MonoBehaviour
 
     public AudioSource explodeSFX;
 
+    levelBounds SceneMan;
+
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +32,8 @@ public class bomber : MonoBehaviour
         EndPoint = crosshair.transform.position;
 
         StartCoroutine(CheckDeathLoop());
+
+        SceneMan = GameObject.Find("SceneManager").GetComponent<levelBounds>();
 
     }
 
@@ -66,7 +70,7 @@ public class bomber : MonoBehaviour
 
                 GetComponent<Shoot>().Fire();
                 stateTimer = reset;
-                EndPoint = crosshair.transform.position;
+                FlightPath();
                 state = 1;
 
             }
@@ -124,6 +128,15 @@ public class bomber : MonoBehaviour
 
 
         }
+
+    }
+
+    void FlightPath()
+    {
+
+        EndPoint = crosshair.transform.position;
+        EndPoint.x = Mathf.Clamp(EndPoint.x, -SceneMan.x, SceneMan.x);
+        EndPoint.y = Mathf.Clamp(EndPoint.y, SceneMan.yMin, SceneMan.yMax);
 
     }
 
