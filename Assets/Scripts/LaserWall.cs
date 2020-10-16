@@ -26,7 +26,7 @@ public class LaserWall : MonoBehaviour
     
         if (GetComponent<EnemyBase>().Active == true)
         {
-            temp.z += speed * Time.fixedDeltaTime;
+            temp.z += speed * Time.deltaTime;
             transform.position = temp;
         }
 
