@@ -26,31 +26,46 @@ public class FarCrosshairMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
-        
+        T = target.transform.position;
+        if (anchor != null)
+        {
+            A = anchor.transform.position;
+        }
 
-        float dist = Vector3.Distance(target.transform.position, gameObject.transform.position);
+        Vector3 GoToPos;
+
+        if (Mathf.Abs(Input.GetAxis("Vertical")) <= 0.2f && Mathf.Abs(Input.GetAxis("Horizontal")) <= 0.2f)
+        {
+            GoToPos = A;
+
+        }
+        else
+        {
+            GoToPos = T;
+
+        }
+
+        float dist = Vector3.Distance(GoToPos, transform.position);
 
         
             speed = Mathf.Pow(dist, POW) + mod;
 
             step = speed * Time.deltaTime;
 
-        if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0)
+        
+
+        if (Vector3.Distance(transform.position, GoToPos) <= step)
         {
-            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, A, step);
+            transform.position = GoToPos;
         }
         else
         {
-            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, T, step);
+            transform.position = Vector3.MoveTowards(transform.position, GoToPos, step);
         }
 
-        T = target.transform.position;
-        if(anchor!=null)
-        {
-            A = anchor.transform.position;
-        }
+        
     }
 }

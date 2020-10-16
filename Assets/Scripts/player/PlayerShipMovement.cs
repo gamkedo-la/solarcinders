@@ -35,9 +35,16 @@ public class PlayerShipMovement : MonoBehaviour
 
 
             step = speed * Time.deltaTime;
+        if (dist <= step)
+        {
+            transform.position = targetPos;
 
+        }
+        else
+        {
             gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, targetPos, step);
-        
+        }
+
 
 
         targetPos = target.transform.position;
