@@ -26,7 +26,7 @@ public class EventManager : MonoBehaviour
 
     GameObject EnemyList;
 
-    
+    GameObject LastEnemy;
     
 
 
@@ -98,6 +98,8 @@ public class EventManager : MonoBehaviour
             events[i].E.SetActive(true);
             events[i].E.GetComponent<EnemyBase>().Active = true;
 
+           
+
             i++;
 
             Spawn();
@@ -135,6 +137,8 @@ public class EventManager : MonoBehaviour
                 }
             }
         }
+
+        LastEnemy = events[events.Length - 1].E;
     }
 
     public void DeleteEvent()

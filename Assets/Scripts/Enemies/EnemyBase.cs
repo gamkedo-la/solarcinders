@@ -17,6 +17,8 @@ public class EnemyBase : MonoBehaviour
 
     public float ZSpawn;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
