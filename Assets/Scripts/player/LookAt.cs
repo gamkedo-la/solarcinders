@@ -12,10 +12,14 @@ public class LookAt : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(target!= null)
-        {
-            transform.LookAt(target.transform);
-        }
+
+        //if (GetComponent<PlayerManager>() != null && GetComponent<PlayerManager>().rolling == false)
+        //{
+            if (target != null)
+            {
+                transform.LookAt(target.transform);
+            }
+       // }
 	
 	}
 }

@@ -14,6 +14,8 @@ public class FarCrosshairMovement : MonoBehaviour
     float step;
     public float mod = 20;
     public float POW;
+
+    Vector3 worldPos;
     
 
     // Start is called before the first frame update
@@ -29,24 +31,28 @@ public class FarCrosshairMovement : MonoBehaviour
     void FixedUpdate()
     {
 
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = Camera.main.nearClipPlane;
+        worldPos = Camera.main.ScreenToWorldPoint(mousePos);
+
         T = target.transform.position;
         if (anchor != null)
         {
             A = anchor.transform.position;
         }
 
-        Vector3 GoToPos;
+        Vector3 GoToPos = T;
 
-        if (Mathf.Abs(Input.GetAxis("Vertical")) <= 0.2f && Mathf.Abs(Input.GetAxis("Horizontal")) <= 0.2f)
-        {
-            GoToPos = A;
+        //if ((Mathf.Abs(Input.GetAxis("Vertical")) <= 0.2f && Mathf.Abs(Input.GetAxis("Horizontal")) <= 0.2f))
+        //{
+        //    GoToPos = A;
 
-        }
-        else
-        {
-            GoToPos = T;
+        //}
+        //else
+        //{
+        //    GoToPos = T;
 
-        }
+        //}
 
         float dist = Vector3.Distance(GoToPos, transform.position);
 
