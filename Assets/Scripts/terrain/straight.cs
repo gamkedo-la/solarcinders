@@ -18,6 +18,7 @@ public class straight : MonoBehaviour
         temp = transform.position;
         //transform.eulerAngles.Set(0, 60, 0);
         //transform.rotation = Quaternion.Euler(0, 60, 0);
+        speed = GameObject.Find("Terrain Manager").GetComponent<TerrainManager>().terrainSpeed;
 
 
     }
