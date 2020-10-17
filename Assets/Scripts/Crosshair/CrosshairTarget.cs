@@ -8,27 +8,31 @@ public class CrosshairTarget : MonoBehaviour
     public Transform Anchor;
     Vector3 temp = new Vector3(0,0,0);
     public int sense = 15;
-    public float mouseSense;
 
     GameObject player;
 
     public int yBound = 20;
 
-    public float MouseX;
-    public float MouseY;
+    bool MouseControl;
 
-    public float mouseClampX;
-    public float mouseClampY;
-
-    public bool MouseControl;
-
-    public Vector3 worldPos;
+    Vector3 worldPos;
 
     // Start is called before the first frame update
     void Start()
     {
 
         player = GameObject.Find("ship");
+
+        if (GameObject.Find("PlayerManager").GetComponent<MouseControl>().mouseCon == true)
+        {
+            MouseControl = true;
+
+        }
+        else
+        {
+
+            MouseControl = false;
+        }
 
     }
 
