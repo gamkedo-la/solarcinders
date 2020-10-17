@@ -20,8 +20,10 @@ public class PowerUp : MonoBehaviour
     public Material engine_P;
 
     public GameObject model;
+    public GameObject engine;
 
     MeshRenderer rend;
+   
 
     
     // Start is called before the first frame update
@@ -29,6 +31,7 @@ public class PowerUp : MonoBehaviour
     {
 
         rend = model.GetComponent<MeshRenderer>();
+        
 
 
         if(DebugStartWithFullCharge == true)
@@ -58,6 +61,8 @@ public class PowerUp : MonoBehaviour
                 tempmaterialarray[0] = wing_N;
                 tempmaterialarray[3] = engine_N;
                 rend.materials = tempmaterialarray;
+
+                
                 /* rend.materials[0] = wing_N;
                 rend.materials[3] = engine_N; */
             }
