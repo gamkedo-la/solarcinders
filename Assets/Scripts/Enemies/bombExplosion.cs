@@ -5,6 +5,8 @@ using UnityEngine;
 public class bombExplosion : MonoBehaviour
 {
     float countUp = 1;
+    float m = 15;
+    float b = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -16,10 +18,13 @@ public class bombExplosion : MonoBehaviour
     void Update()
     {
 
-        countUp += (Time.deltaTime / 2);
-        transform.localScale *= countUp;
+        countUp += Time.deltaTime;
+        b += Time.deltaTime * m;
+        Vector3 s = new Vector3(b, b, b);
 
-        if (countUp > 1.15f)
+        transform.localScale = s;
+
+        if (countUp > 1.4f)
         {
 
             Destroy(gameObject);
