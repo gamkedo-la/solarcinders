@@ -16,7 +16,7 @@ public class Laser : MonoBehaviour {
             target = GameObject.Find("coneMaster").GetComponent<TargetLock>().target;
         }
 
-        Destroy(gameObject, timer);
+        //Destroy(gameObject, timer);
 	
 	}
 	
@@ -33,6 +33,11 @@ public class Laser : MonoBehaviour {
             Vector3 temp = gameObject.transform.position;
             temp += gameObject.transform.forward * speed * Time.deltaTime;
             gameObject.transform.position = temp;
+        }
+        if(transform.position.z > 800)
+        {
+            Destroy(gameObject);
+
         }
 	
 	}

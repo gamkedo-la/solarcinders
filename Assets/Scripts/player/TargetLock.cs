@@ -51,7 +51,7 @@ public class TargetLock : MonoBehaviour
             currentCollisions.Add(other.gameObject);
         }
 
-        if (target != null)
+        if (target != null && other.tag == "enemy")
         {
             if(other.transform.position.z > clip && other.transform.position.z < target.transform.position.z)
             {
