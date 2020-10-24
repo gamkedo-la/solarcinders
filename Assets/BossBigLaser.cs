@@ -8,6 +8,7 @@ public class BossBigLaser : MonoBehaviour
     public float speed;
     Vector3 temp;
     public GameObject laser;
+    BossArm A;
 
     bool firing = false;
 
@@ -22,7 +23,7 @@ public class BossBigLaser : MonoBehaviour
     void Start()
     {
 
-        
+        A = GameObject.Find("ArmModelContainer").GetComponent<BossArm>();
         laser.SetActive(false);
 
     }
@@ -54,6 +55,7 @@ public class BossBigLaser : MonoBehaviour
             {
                 firing = false;
                 laser.SetActive(false);
+                A.laser = false;
 
             }
         }
@@ -64,6 +66,7 @@ public class BossBigLaser : MonoBehaviour
         firing = true;
 
         laser.SetActive(true);
+        A.laser = true;
         temp = transform.localScale;
         t = 0;
 

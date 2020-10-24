@@ -2,65 +2,48 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossArm : MonoBehaviour
+public class BossCenter : MonoBehaviour
 {
-    
 
-    //GameObject BL;
+    public GameObject target;
 
-    public bool laser = false;
+    public bool invuln = true;
 
     public int Health;
 
     int state = 1;
 
-    public float stateTimer;
-
-    BossCenter C;
-
-    bool invuln = false;
-
-    public bool spinning = true;
+    BossArm BA;
 
     BossArmRot R;
-   
-
-
 
     // Start is called before the first frame update
     void Start()
     {
-        // BL = transform.Find("big laser").gameObject;
+        target = GameObject.Find("Ship");
 
-        C = GameObject.Find("center").GetComponent<BossCenter>();
+        BA = GameObject.Find("ArmModelContainer").GetComponent<BossArm>();
         R = GameObject.Find("Arm").GetComponent<BossArmRot>();
 
-        Health = 30;
+
+
+        Health = 50;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
 
-
-        if(stateTimer > 0)
+        if (target != null)
         {
-            stateTimer -= Time.deltaTime;
-
-            if(stateTimer <= 0)
-            {
-
-                invuln = false;
-            }
-
+            transform.LookAt(target.transform);
         }
 
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.tag == "PlayerLaser" && invuln == false && laser == false)
+        if (collision.collider.tag == "PlayerLaser" && invuln == false)
         {
 
             TakeDamage(collision.gameObject.GetComponent<Damage>().damage);
@@ -76,21 +59,19 @@ public class BossArm : MonoBehaviour
         }
     }
 
-
     void StateMachine()
     {
-
         state++;
-        C.invuln = false;
         invuln = true;
-        R.NextPhase();
-        spinning = false;
-
-        
-        if (state < 4)
+        if(state < 4)
         {
-            Health = ((10 * state) + 20);
+            Health = ((state * 20) + 30);
+            BA.stateTimer = 3.0f;
+            BA.spinning = true;
+            R.spinning = true;
+
         }
+
     }
 
 }
