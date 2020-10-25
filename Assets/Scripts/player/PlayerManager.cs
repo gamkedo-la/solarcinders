@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 public class PlayerManager : MonoBehaviour
 {
 
@@ -50,16 +50,16 @@ public class PlayerManager : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("Fire3") && rolling == false &&
-            GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>().isPaused==false)
-        {
+        //if (Input.GetButtonDown("Fire3") && rolling == false &&
+        //    GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>().isPaused == false)
+        //{
 
-            BarrellRoll();
+        //    BarrellRoll();
 
-        }
+        //}
 
         // Pause:
-        if(Input.GetKeyUp(KeyCode.Escape))
+        if (Input.GetKeyUp(KeyCode.Escape))
         {
             GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>().TogglePause();
         }
@@ -152,5 +152,12 @@ public class PlayerManager : MonoBehaviour
 
     }
 
-
+    private void OnBarrelRoll()
+    {
+        Debug.Log("Barrel roll pressed");
+        if (rolling == false && GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>().isPaused == false)
+        {
+            BarrellRoll();
+        }
+    }
 }
