@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PowerUp : MonoBehaviour
 {
@@ -74,17 +75,17 @@ public class PowerUp : MonoBehaviour
             statusBars.SetFill(Charge);
         }
 
-        if (On == false && Input.GetButtonDown("Fire2") && Charge >= 50)
-        {
-            On = true;
-            var tempmaterialarray = rend.materials;
-            tempmaterialarray[0] = wing_P;
-            tempmaterialarray[3] = engine_P;
-            rend.materials = tempmaterialarray;
-            /* rend.materials[0] = wing_P;
-            rend.materials[3] = engine_P; */
+        //if (On == false && Input.GetButtonDown("Fire2") && Charge >= 50)
+        //{
+        //    On = true;
+        //    var tempmaterialarray = rend.materials;
+        //    tempmaterialarray[0] = wing_P;
+        //    tempmaterialarray[3] = engine_P;
+        //    rend.materials = tempmaterialarray;
+        //    /* rend.materials[0] = wing_P;
+        //    rend.materials[3] = engine_P; */
 
-        }
+        //}
 
 
     }
@@ -108,6 +109,22 @@ public class PowerUp : MonoBehaviour
 
         statusBars.SetFill(Charge);
 
+    }
+
+    private void OnPowerup()
+    {
+        Debug.Log("Powerup pressed");
+        if (On == false && Charge >= 50)
+        {
+            On = true;
+            var tempmaterialarray = rend.materials;
+            tempmaterialarray[0] = wing_P;
+            tempmaterialarray[3] = engine_P;
+            rend.materials = tempmaterialarray;
+            /* rend.materials[0] = wing_P;
+            rend.materials[3] = engine_P; */
+
+        }
     }
 
 }
