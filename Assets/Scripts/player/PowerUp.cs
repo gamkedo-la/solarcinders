@@ -25,6 +25,8 @@ public class PowerUp : MonoBehaviour
     public AudioSource powerUpSFX;
 
     MeshRenderer rend;
+
+    bool ready;
    
 
     
@@ -63,7 +65,7 @@ public class PowerUp : MonoBehaviour
                 tempmaterialarray[0] = wing_N;
                 tempmaterialarray[3] = engine_N;
                 rend.materials = tempmaterialarray;
-
+                ready = false;
                 
                 /* rend.materials[0] = wing_N;
                 rend.materials[3] = engine_N; */
@@ -92,11 +94,16 @@ public class PowerUp : MonoBehaviour
 
         Charge += i;
 
-        if (Charge >= 100)
+        if (Charge > 100)
         {
             Charge = 100;
-            powerUpSFX.Play();
+            
 
+        }
+        if (Charge >= 50 && ready == false)
+        {
+            powerUpSFX.Play();
+            ready = true;
         }
 
         statusBars.SetFill(Charge);

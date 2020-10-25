@@ -17,6 +17,8 @@ public class BossCenter : MonoBehaviour
 
     BossArmRot R;
 
+    GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +26,8 @@ public class BossCenter : MonoBehaviour
 
         BA = GameObject.Find("ArmModelContainer").GetComponent<BossArm>();
         R = GameObject.Find("Arm").GetComponent<BossArmRot>();
+
+        player = GameObject.Find("Ship");
 
 
 
@@ -69,6 +73,7 @@ public class BossCenter : MonoBehaviour
             BA.stateTimer = 3.0f;
             BA.spinning = true;
             R.spinning = true;
+            player.GetComponent<PowerUp>().Add(GetComponent<Charge>().charge);
 
         }
 

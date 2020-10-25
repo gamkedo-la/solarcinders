@@ -23,8 +23,8 @@ public class BossArm : MonoBehaviour
     public bool spinning = true;
 
     BossArmRot R;
-   
 
+    GameObject player;
 
 
     // Start is called before the first frame update
@@ -34,6 +34,8 @@ public class BossArm : MonoBehaviour
 
         C = GameObject.Find("center").GetComponent<BossCenter>();
         R = GameObject.Find("Arm").GetComponent<BossArmRot>();
+
+        player = GameObject.Find("Ship");
 
         Health = 30;
     }
@@ -90,6 +92,7 @@ public class BossArm : MonoBehaviour
         if (state < 4)
         {
             Health = ((10 * state) + 20);
+            player.GetComponent<PowerUp>().Add(GetComponent<Charge>().charge);
         }
     }
 
