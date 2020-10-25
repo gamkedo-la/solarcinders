@@ -36,19 +36,19 @@ public class PlayerManager : MonoBehaviour
     {
         
 
-        if (Input.GetButtonDown("Fire1") &&
-            GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>().isPaused == false)
-        {
-            if (GetComponent<PowerUp>().On == true)
-            {
-                GetComponent<Shoot>().PowerShot();
+        //if (Input.GetButtonDown("Fire1") &&
+        //    GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>().isPaused == false)
+        //{
+        //    if (GetComponent<PowerUp>().On == true)
+        //    {
+        //        GetComponent<Shoot>().PowerShot();
 
-            }
-            else
-            {
-                GetComponent<Shoot>().Fire();
-            }
-        }
+        //    }
+        //    else
+        //    {
+        //        GetComponent<Shoot>().Fire();
+        //    }
+        //}
 
         //if (Input.GetButtonDown("Fire3") && rolling == false &&
         //    GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>().isPaused == false)
@@ -158,6 +158,23 @@ public class PlayerManager : MonoBehaviour
         if (rolling == false && GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>().isPaused == false)
         {
             BarrellRoll();
+        }
+    }
+
+    private void OnShoot()
+    {
+        Debug.Log("Shoot pressed");
+        if (GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>().isPaused == false)
+        {
+            if (GetComponent<PowerUp>().On == true)
+            {
+                GetComponent<Shoot>().PowerShot();
+
+            }
+            else
+            {
+                GetComponent<Shoot>().Fire();
+            }
         }
     }
 }
