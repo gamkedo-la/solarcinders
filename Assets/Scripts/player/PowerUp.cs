@@ -26,7 +26,7 @@ public class PowerUp : MonoBehaviour
 
     MeshRenderer rend;
 
-    bool ready;
+    bool ready = false;
    
 
     
