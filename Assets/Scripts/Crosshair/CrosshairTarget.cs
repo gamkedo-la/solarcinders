@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CrosshairTarget : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class CrosshairTarget : MonoBehaviour
     bool MouseControl;
 
     Vector3 worldPos;
+
+    Vector2 movementInputValue;
 
     // Start is called before the first frame update
     void Start()
@@ -60,14 +63,24 @@ public class CrosshairTarget : MonoBehaviour
 
 
 
-                if (Mathf.Abs(Input.GetAxis("Horizontal") * sense) > 1)
+                //if (Mathf.Abs(Input.GetAxis("Horizontal") * sense) > 1)
+                //{
+                //    temp.x += Input.GetAxis("Horizontal") * sense;
+                //}
+
+                //if (Mathf.Abs(Input.GetAxis("Vertical") * sense) > 1)
+                //{
+                //    temp.y += Input.GetAxis("Vertical") * sense;
+                //}
+
+                if (Mathf.Abs(movementInputValue.x * sense) > 1)
                 {
-                    temp.x += Input.GetAxis("Horizontal") * sense;
+                    temp.x += movementInputValue.x * sense;
                 }
 
-                if (Mathf.Abs(Input.GetAxis("Vertical") * sense) > 1)
+                if (Mathf.Abs(movementInputValue.y * sense) > 1)
                 {
-                    temp.y += Input.GetAxis("Vertical") * sense;
+                    temp.y += movementInputValue.y * sense;
                 }
 
                 temp.y = Mathf.Clamp(temp.y, -yBound, yBound);
@@ -75,5 +88,10 @@ public class CrosshairTarget : MonoBehaviour
                 gameObject.transform.position = temp;
             }
         }
+    }
+
+    private void OnMove(InputValue value)
+    {
+        movementInputValue = value.Get<Vector2>();
     }
 }

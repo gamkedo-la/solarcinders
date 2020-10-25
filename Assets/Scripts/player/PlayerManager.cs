@@ -59,10 +59,10 @@ public class PlayerManager : MonoBehaviour
         //}
 
         // Pause:
-        if (Input.GetKeyUp(KeyCode.Escape))
-        {
-            GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>().TogglePause();
-        }
+        //if (Input.GetKeyUp(KeyCode.Escape))
+        //{
+        //    GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>().TogglePause();
+        //}
 
         if (rolling == true)
         {
@@ -176,5 +176,11 @@ public class PlayerManager : MonoBehaviour
                 GetComponent<Shoot>().Fire();
             }
         }
+    }
+
+    private void OnPause()
+    {
+        Debug.Log("Pause pressed");
+        GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>().TogglePause();
     }
 }
