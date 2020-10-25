@@ -22,6 +22,8 @@ public class PowerUp : MonoBehaviour
     public GameObject model;
     public GameObject engine;
 
+    public AudioSource powerUpSFX;
+
     MeshRenderer rend;
    
 
@@ -90,9 +92,11 @@ public class PowerUp : MonoBehaviour
 
         Charge += i;
 
-        if (Charge > 100)
+        if (Charge >= 100)
         {
             Charge = 100;
+            powerUpSFX.Play();
+
         }
 
         statusBars.SetFill(Charge);
