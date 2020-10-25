@@ -74,7 +74,7 @@ public class PowerUp : MonoBehaviour
             statusBars.SetFill(Charge);
         }
 
-        if (On == false && Input.GetButtonDown("Fire2") && Charge > 50)
+        if (On == false && Input.GetButtonDown("Fire2") && Charge >= 50)
         {
             On = true;
             var tempmaterialarray = rend.materials;
