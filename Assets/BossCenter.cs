@@ -11,7 +11,7 @@ public class BossCenter : MonoBehaviour
 
     public int Health;
 
-    int state = 1;
+    public int state = 1;
 
     BossArm BA;
 

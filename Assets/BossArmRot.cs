@@ -8,15 +8,15 @@ public class BossArmRot : MonoBehaviour
 
     public bool spinning = true;
 
-    float t = 0;
+    public float t = 0;
 
-    float lstart;
+    public float lstart;
 
-    float lend;
+    public float lend;
 
-    float zt;
+    public float zt;
 
-    float Adist;
+    public float Adist;
 
     public float speed;
 
@@ -42,7 +42,7 @@ public class BossArmRot : MonoBehaviour
 
             zt = Mathf.Lerp(lstart, lend, t);
 
-            t += Time.deltaTime / (Adist / speed);
+            t += Mathf.Abs(Time.deltaTime / (Adist / speed));
 
             Vector3 tmp = transform.rotation.eulerAngles;
 
@@ -59,9 +59,11 @@ public class BossArmRot : MonoBehaviour
 
 
         speed *= -1.2f;
+
+        lstart = transform.rotation.eulerAngles.z;
         spinning = false;
 
-        lstart = transform.rotation.z;
+        
         t = 0;
         //    if(transform.rotation.z > 180)
         //   {
@@ -72,7 +74,7 @@ public class BossArmRot : MonoBehaviour
         //  else
         //  {
         lend = 180;
-        Adist = transform.rotation.z;
+        Adist = transform.rotation.eulerAngles.z;
         //}
 
     }
