@@ -31,32 +31,34 @@ public class BossBigLaser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (A.spinning == true)
+        {
 
-        
             testTime -= Time.deltaTime;
-        
-        if (testTime <= 0 && firing == false)
-        {
-            Fire();
-            testTime = 6;
 
-        }
-
-
-        if (firing == true)
-        {
-            k = Mathf.Lerp(1, 60, t);
-            t += Time.deltaTime;
-
-            temp.z = k;
-            transform.localScale = temp;
-
-            if (t >= 2.5f)
+            if (testTime <= 0 && firing == false)
             {
-                firing = false;
-                laser.SetActive(false);
-                A.laser = false;
+                Fire();
+                testTime = 6;
 
+            }
+
+
+            if (firing == true)
+            {
+                k = Mathf.Lerp(1, 60, t);
+                t += Time.deltaTime;
+
+                temp.z = k;
+                transform.localScale = temp;
+
+                if (t >= 2.5f)
+                {
+                    firing = false;
+                    laser.SetActive(false);
+                    A.laser = false;
+
+                }
             }
         }
     }

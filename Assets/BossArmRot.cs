@@ -8,15 +8,15 @@ public class BossArmRot : MonoBehaviour
 
     public bool spinning = true;
 
-    public float t = 0;
+    float t = 0;
 
-    public float lstart;
+    float lstart;
 
-    public float lend;
+    float lend;
 
-    public float zt;
+    float zt;
 
-    public float Adist;
+    float Adist;
 
     public float speed;
 
