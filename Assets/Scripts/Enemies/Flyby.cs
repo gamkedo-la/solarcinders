@@ -97,6 +97,7 @@ public class Flyby : MonoBehaviour
                 Temp = transform.position;
                 Temp.z -= 8;
                 transform.position = Temp;
+                transform.eulerAngles = new Vector3(0, 180 * state, 0);
 
                 state++;
 
