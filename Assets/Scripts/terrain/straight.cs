@@ -11,6 +11,10 @@ public class straight : MonoBehaviour
 
     public float speed;
 
+    GameObject next;
+
+    public int terrainSize;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +23,14 @@ public class straight : MonoBehaviour
         //transform.eulerAngles.Set(0, 60, 0);
         //transform.rotation = Quaternion.Euler(0, 60, 0);
         speed = GameObject.Find("Terrain Manager").GetComponent<TerrainManager>().terrainSpeed;
+
+        next = transform.Find("next").gameObject;
+
+        temp.z += terrainSize;
+
+        next.transform.position = temp;
+
+        temp = transform.position;
 
 
     }

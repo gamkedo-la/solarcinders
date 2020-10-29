@@ -24,6 +24,10 @@ public class TerrainManager : MonoBehaviour
 
     float farplane;
 
+    public Transform next;
+
+    Vector3 temp;
+
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +42,9 @@ public class TerrainManager : MonoBehaviour
             SpawnPos.z += terrainSize;
 
             GameObject T = Instantiate(Segments[Random.Range(0, Segments.Length)], SpawnPos, Quaternion.Euler(0,Random.Range(0,2)*180,0), gameObject.transform);
+
+            next = T.transform.Find("next");
+
             T.GetComponent<straight>().speed = terrainSpeed;
 
         }
@@ -53,19 +60,30 @@ public class TerrainManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        timer -= Time.deltaTime;
-
-        if (timer <0.02)
+        if (GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>().isPaused == false)
         {
+            timer -= Time.deltaTime;
 
-            GameObject T = Instantiate(Segments[Random.Range(0, Segments.Length)], SpawnPos, Quaternion.Euler(0, Random.Range(0, 2) * 180, 0), gameObject.transform);
-            T.GetComponent<straight>().speed = terrainSpeed;
+            if (timer <= 0)
+            {
 
-            timer = reset;
+                GameObject T = Instantiate(Segments[Random.Range(0, Segments.Length)], next.position, Quaternion.Euler(0, Random.Range(0, 2) * 180, 0), gameObject.transform);
 
-            //i++;
+                next = T.transform.Find("next");
 
+                T.GetComponent<straight>().speed = terrainSpeed;
+
+                temp = T.transform.position;
+
+                temp.z -= terrainSpeed * Time.deltaTime;
+
+                T.transform.position = temp;
+
+                timer = reset;
+
+                //i++;
+
+            }
         }
 
     }
