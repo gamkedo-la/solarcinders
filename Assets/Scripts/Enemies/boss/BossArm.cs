@@ -26,6 +26,9 @@ public class BossArm : MonoBehaviour
 
     GameObject player;
 
+    public GameObject GunLight;
+
+    public GameObject model;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +37,8 @@ public class BossArm : MonoBehaviour
 
         C = GameObject.Find("center").GetComponent<BossCenter>();
         R = GameObject.Find("Arm").GetComponent<BossArmRot>();
+        GunLight = transform.Find("Sphere").gameObject;
+        model = transform.Find("model").gameObject;
 
         player = GameObject.Find("Ship");
 
@@ -87,6 +92,7 @@ public class BossArm : MonoBehaviour
         invuln = true;
         R.NextPhase();
         spinning = false;
+        GunLight.SetActive(false);
 
         
         if (state < 4)

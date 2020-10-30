@@ -72,6 +72,7 @@ public class BossCenter : MonoBehaviour
             Health = ((state * 20) + 30);
             BA.stateTimer = 3.0f;
             BA.spinning = true;
+            BA.GunLight.SetActive(true);
             R.spinning = true;
             player.GetComponent<PowerUp>().Add(GetComponent<Charge>().charge);
 

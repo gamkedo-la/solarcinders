@@ -10,17 +10,23 @@ public class BossArmRot : MonoBehaviour
 
     float t = 0;
 
+    float tt = 0;
+
     float lstart;
 
     float lend;
 
     float zt;
 
+    float xt;
+
     float Adist;
 
     public float speed;
 
+    public GameObject model;
 
+    
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +42,17 @@ public class BossArmRot : MonoBehaviour
         {
 
             transform.Rotate(Vector3.forward, speed * Time.deltaTime);
+
+            xt = Mathf.Lerp(35.0f, 0.0f, tt);
+
+            tt += Time.deltaTime * 10;
+
+            Vector3 Q = transform.rotation.eulerAngles;
+
+            Q.x = xt;
+
+            model.transform.eulerAngles = Q;
+
         }
         if (spinning == false)
         {
@@ -49,6 +66,23 @@ public class BossArmRot : MonoBehaviour
             tmp.z = zt;
 
             transform.eulerAngles = tmp;
+
+            if(t >= 1)
+            {
+
+                xt = Mathf.Lerp(0.0f, 35.0f, tt);
+
+                tt += Time.deltaTime * 4;
+
+                Vector3 Q = transform.rotation.eulerAngles;
+
+                Q.x = xt;
+
+                model.transform.eulerAngles = Q;
+
+
+            }
+
 
         }
 
@@ -65,6 +99,7 @@ public class BossArmRot : MonoBehaviour
 
         
         t = 0;
+        tt = 0;
         //    if(transform.rotation.z > 180)
         //   {
         //       lend = 360.0f;
