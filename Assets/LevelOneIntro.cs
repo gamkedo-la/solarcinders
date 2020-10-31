@@ -22,6 +22,17 @@ public class LevelOneIntro : MonoBehaviour
 
     int LT = 0;
 
+    public GameObject crosshairFar;
+
+    public GameObject spot;
+
+    bool L = false;
+
+    public GameObject DoorL;
+    public GameObject DoorR;
+
+    Vector3 tempL;
+    Vector3 tempR;
 
     // Start is called before the first frame update
     void Start()
@@ -30,12 +41,25 @@ public class LevelOneIntro : MonoBehaviour
         temp = transform.position;
 
         y = temp.y;
+
+        crosshairFar.SetActive(false);
+        spot.SetActive(false);
+
+        tempL = DoorL.transform.position;
+        tempR = DoorR.transform.position;
         
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if(t > -0.5f && L == false)
+        {
+            spot.SetActive(true);
+            L = true;
+
+        }
 
         if (t <= 1)
         {
@@ -55,6 +79,23 @@ public class LevelOneIntro : MonoBehaviour
 
             transform.position = temp;
 
+            t += Time.deltaTime;
+
+        }
+
+        if (t > 1.5f)
+        {
+            tempL = DoorL.transform.position;
+            tempR = DoorR.transform.position;
+
+            tempL.x -= 4.5f * Time.deltaTime;
+
+            tempR.x += 4.5f * Time.deltaTime;
+
+
+
+            DoorL.transform.position = tempL;
+            DoorR.transform.position = tempR;
 
         }
 
@@ -73,7 +114,7 @@ public class LevelOneIntro : MonoBehaviour
 
         if(transform.position.z < -200)
         {
-
+            crosshairFar.SetActive(true);
             Destroy(gameObject);
         }
 
