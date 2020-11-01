@@ -3,20 +3,30 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 public class ControlRebinding : MonoBehaviour
 {
     public InputActionReference actionReference;
     public InputActionAsset playerInputActions;
     public TextMeshProUGUI bindingText;
+    public int bindingsIndex = 0;
 
     private InputActionMap playerActionMap;
+
+    private void OnEnable()
+    {
+        ResetBindings.OnReset += SetBindingText;
+    }
+
+    private void OnDisable()
+    {
+        ResetBindings.OnReset -= SetBindingText;
+    }
 
     private void Start()
     {
         playerActionMap = playerInputActions.FindActionMap("Player");
-        SetBindingText();
+        SetBindingText();        
     }
 
     public void PerformRebinding()
@@ -27,9 +37,9 @@ public class ControlRebinding : MonoBehaviour
 
     private void RemapButtonClicked(InputAction actionToRebind)
     {
-        var rebindOperation = actionToRebind.PerformInteractiveRebinding()
+        var rebindOperation = actionToRebind.PerformInteractiveRebinding(bindingsIndex)
                     // To avoid accidental input from mouse motion
-                    .WithControlsExcluding("Mouse")
+                    //.WithControlsExcluding("Mouse")
                     .OnMatchWaitForAnother(0.1f)
                     .Start();
 
@@ -46,6 +56,12 @@ public class ControlRebinding : MonoBehaviour
 
     private void SetBindingText()
     {
-        bindingText.text = InputControlPath.ToHumanReadableString(actionReference.action.bindings[0].effectivePath);
+        bindingText.text = InputControlPath.ToHumanReadableString(actionReference.action.bindings[bindingsIndex].effectivePath);
+    }
+
+    private void ResetToDefaultBinding()
+    {
+        actionReference.action.RemoveBindingOverride(bindingsIndex);
+        SetBindingText();
     }
 }
