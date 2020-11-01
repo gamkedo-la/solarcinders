@@ -34,6 +34,10 @@ public class LevelOneIntro : MonoBehaviour
     Vector3 tempL;
     Vector3 tempR;
 
+    public AudioSource engine;
+
+    bool ES;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,7 +62,8 @@ public class LevelOneIntro : MonoBehaviour
         {
             spot.SetActive(true);
             L = true;
-
+            engine.Play();
+            GameObject.Find("Ship").GetComponent<PlayerManager>().engine.Play();
         }
 
         if (t <= 1)
@@ -115,6 +120,12 @@ public class LevelOneIntro : MonoBehaviour
         if(transform.position.z < -200)
         {
             crosshairFar.SetActive(true);
+            engine.volume -= Time.deltaTime * 10;
+            
+        }
+        if(transform.position.z < -500)
+        {
+
             Destroy(gameObject);
         }
 

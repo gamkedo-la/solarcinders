@@ -22,6 +22,10 @@ public class PlayerManager : MonoBehaviour
     GameObject model;
 
     public GameObject crosshairFar;
+
+    float ET = 0.5f;
+
+    bool ES = false;
    
 
     // Start is called before the first frame update
@@ -35,8 +39,7 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
+        
         //if (Input.GetButtonDown("Fire1") &&
         //    GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>().isPaused == false)
         //{
@@ -73,6 +76,10 @@ public class PlayerManager : MonoBehaviour
 
         if (rolling == true)
         {
+
+            
+
+
 
             model.transform.Rotate(transform.forward, rollSpeed * Time.deltaTime);
             spin++;
@@ -159,6 +166,17 @@ public class PlayerManager : MonoBehaviour
         rolling = true;
         rolltimer = rolltimerReset;
         engine.pitch = 1.4f;
+
+        if (crosshairFar.transform.position.x > transform.position.x)
+        {
+            rollSpeed = Mathf.Abs(rollSpeed) * -1;
+
+        }
+        if (crosshairFar.transform.position.x <= transform.position.x)
+        {
+
+            rollSpeed = Mathf.Abs(rollSpeed);
+        }
 
     }
 
