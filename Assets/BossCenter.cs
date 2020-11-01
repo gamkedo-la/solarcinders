@@ -17,6 +17,8 @@ public class BossCenter : MonoBehaviour
 
     BossArmRot R;
 
+    BossMovement BM;
+
     GameObject player;
 
     public GameObject centerlight;
@@ -28,6 +30,7 @@ public class BossCenter : MonoBehaviour
 
         BA = GameObject.Find("ArmModelContainer").GetComponent<BossArm>();
         R = GameObject.Find("Arm").GetComponent<BossArmRot>();
+        BM = GameObject.Find("boss").GetComponent<BossMovement>();
 
         player = GameObject.Find("Ship");
 
@@ -83,7 +86,14 @@ public class BossCenter : MonoBehaviour
             player.GetComponent<PowerUp>().Add(GetComponent<Charge>().charge);
 
         }
+        if(state >= 4)
+        {
+
+            BM.Death();
+
+        }
 
     }
+
 
 }
