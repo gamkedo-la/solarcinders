@@ -24,6 +24,7 @@ public class PowerUp : MonoBehaviour
     public GameObject engine;
 
     public AudioSource powerUpSFX;
+    public AudioSource powerUpDepletedSFX;
 
     MeshRenderer rend;
 
@@ -67,9 +68,11 @@ public class PowerUp : MonoBehaviour
                 tempmaterialarray[3] = engine_N;
                 rend.materials = tempmaterialarray;
                 ready = false;
-                
+
                 /* rend.materials[0] = wing_N;
                 rend.materials[3] = engine_N; */
+
+                powerUpDepletedSFX.Play();
             }
 
             statusBars.SetFill(Charge);
