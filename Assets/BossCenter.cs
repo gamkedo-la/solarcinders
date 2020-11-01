@@ -19,6 +19,8 @@ public class BossCenter : MonoBehaviour
 
     GameObject player;
 
+    public GameObject centerlight;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +30,8 @@ public class BossCenter : MonoBehaviour
         R = GameObject.Find("Arm").GetComponent<BossArmRot>();
 
         player = GameObject.Find("Ship");
+
+        centerlight = transform.Find("Sphere").gameObject;
 
 
 
@@ -67,7 +71,9 @@ public class BossCenter : MonoBehaviour
     {
         state++;
         invuln = true;
-        if(state < 4)
+        centerlight.SetActive(false);
+
+        if (state < 4)
         {
             Health = ((state * 20) + 30);
             BA.stateTimer = 3.0f;

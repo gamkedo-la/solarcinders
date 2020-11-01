@@ -93,7 +93,7 @@ public class BossArm : MonoBehaviour
         R.NextPhase();
         spinning = false;
         GunLight.SetActive(false);
-
+        C.centerlight.SetActive(true);
         
         if (state < 4)
         {
