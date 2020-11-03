@@ -12,12 +12,12 @@ public class PlayerManager : MonoBehaviour
     public AudioSource engine;
     public AudioSource playerHitSFX;
 
+    public AudioSource rollHitSFX;
+
     public bool rolling = false;
     public float rolltimer;
     public float rolltimerReset;
     public float rollSpeed;
-
-    int spin = 1;
 
     GameObject model;
 
@@ -26,6 +26,8 @@ public class PlayerManager : MonoBehaviour
     float ET = 0.5f;
 
     bool ES = false;
+
+    public GameObject EE;
    
 
     // Start is called before the first frame update
@@ -34,6 +36,8 @@ public class PlayerManager : MonoBehaviour
         StartCoroutine(LowHealthChecker());
 
         model = transform.Find("ShipContainer").gameObject;
+
+        EE.SetActive(false);
     }
 
     // Update is called once per frame
@@ -82,14 +86,15 @@ public class PlayerManager : MonoBehaviour
 
 
             model.transform.Rotate(transform.forward, rollSpeed * Time.deltaTime);
-            spin++;
+
             rolltimer -= Time.deltaTime;
 
             if(rolltimer <= 0)
             {
 
                 rolling = false;
-                spin = 1;
+                EE.SetActive(false);
+
                 
 
             }
@@ -144,19 +149,35 @@ public class PlayerManager : MonoBehaviour
 
     void OnCollisionEnter(Collision collide)
     {
-        TakeDamage(collide.gameObject.GetComponent<Damage>().damage);
-        playerHitSFX.Play();
+        if (collide.gameObject.tag == "EnemyLaser")
+        {
+            if (rolling == false)
+            {
+                TakeDamage(collide.gameObject.GetComponent<Damage>().damage);
+                playerHitSFX.Play();
+            }
+            if (rolling == true)
+            {
+
+                rollHitSFX.Play();
+            }
+        }
+        if (collide.gameObject.tag == "enemy")
+        {
+
+            TakeDamage(collide.gameObject.GetComponent<Damage>().damage);
+            playerHitSFX.Play();
+        }
+
     }
 
     void TakeDamage(int dam)
     {
 
-        if (rolling == false)
-        {
             Health -= dam;
 
             HP.SetFill(Health);
-        }
+        
 
     }
 
@@ -166,6 +187,8 @@ public class PlayerManager : MonoBehaviour
         rolling = true;
         rolltimer = rolltimerReset;
         engine.pitch = 1.4f;
+
+        EE.SetActive(true);
 
         if (crosshairFar.transform.position.x > transform.position.x)
         {
