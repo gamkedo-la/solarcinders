@@ -8,7 +8,7 @@ public class Score : MonoBehaviour
 
     public Text display;
 
-    int score = 0;
+    public int score = 0;
 
     private void Start()
     {

@@ -27,8 +27,9 @@ public class EventManager : MonoBehaviour
     GameObject EnemyList;
 
     GameObject LastEnemy;
-    
 
+
+    public List<GameObject> EndLevelList = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -72,6 +73,12 @@ public class EventManager : MonoBehaviour
         countUp += Time.deltaTime;
         Spawn();
 
+        if (EndLevelList.Count == 0)
+        {
+
+            EndLevel();
+        }
+
         
     }
 
@@ -98,7 +105,17 @@ public class EventManager : MonoBehaviour
             events[i].E.SetActive(true);
             events[i].E.GetComponent<EnemyBase>().Active = true;
 
-           
+           if(i == events.Length - 1)
+            {
+
+                foreach (GameObject En in GameObject.FindGameObjectsWithTag("enemy"))
+                {
+
+                    EndLevelList.Add(En);
+
+                }
+
+            }
 
             i++;
 
@@ -197,6 +214,34 @@ public class EventManager : MonoBehaviour
 
         }
 
+
+    }
+
+
+
+
+    void EndLevel()
+    {
+
+        GameObject ShipT = GameObject.Find("shipTarget");
+        GameObject CrosshairFar = GameObject.Find("CrossharFar");
+        GameObject Player = GameObject.Find("Ship");
+
+        
+
+        ShipT.transform.position = new Vector3(0, -3, 20);
+        CrosshairFar.SetActive(false);
+
+        if(Vector3.Distance(Player.transform.position, ShipT.transform.position) < .1f)
+        {
+
+
+            GameObject.FindGameObjectWithTag("EndScreen").GetComponent<EndScreen>().EndTheLevel();
+            GameObject.FindGameObjectWithTag("EndScreen").GetComponent<CanvasGroup>().alpha = 1;
+            GameObject.FindGameObjectWithTag("EndScreen").GetComponent<CanvasGroup>().blocksRaycasts = true;
+
+
+        }
 
     }
 

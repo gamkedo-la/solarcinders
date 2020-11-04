@@ -16,6 +16,8 @@ public class Laser : MonoBehaviour {
             target = GameObject.Find("coneMaster").GetComponent<TargetLock>().target;
         }
 
+        GameObject.Find("Ship").GetComponent<PlayerManager>().Shots++;
+
         //Destroy(gameObject, timer);
 	
 	}
@@ -48,7 +50,7 @@ public class Laser : MonoBehaviour {
         {
             // Debug.Log("hit");
             //GameObject.Find("Ship").GetComponent<PowerUp>().Add(collide.gameObject.GetComponent<Charge>().charge);
-
+            GameObject.Find("Ship").GetComponent<PlayerManager>().Hits++;
             Destroy(gameObject);
         }
     }

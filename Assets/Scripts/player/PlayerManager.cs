@@ -28,6 +28,10 @@ public class PlayerManager : MonoBehaviour
     bool ES = false;
 
     public GameObject EE;
+
+    public int Shots;
+    public int Hits;
+    public int LongestCombo;
    
 
     // Start is called before the first frame update
