@@ -28,6 +28,11 @@ public class EventManager : MonoBehaviour
 
     GameObject LastEnemy;
 
+    public bool EndCheck = false;
+
+    public bool Ended = false;
+
+    public int EC;
 
     public List<GameObject> EndLevelList = new List<GameObject>();
 
@@ -61,6 +66,15 @@ public class EventManager : MonoBehaviour
     void Update()
     {
 
+
+        EC = EndLevelList.Count;
+
+        if (EC == 0 && EndCheck == true && Ended == false)
+        {
+            Debug.Log("ending level");
+            EndLevel();
+        }
+
         if (i > events.Length - 1)
         {
 
@@ -69,15 +83,12 @@ public class EventManager : MonoBehaviour
 
         }
 
+        
 
         countUp += Time.deltaTime;
         Spawn();
 
-        if (EndLevelList.Count == 0)
-        {
 
-            EndLevel();
-        }
 
         
     }
@@ -105,15 +116,12 @@ public class EventManager : MonoBehaviour
             events[i].E.SetActive(true);
             events[i].E.GetComponent<EnemyBase>().Active = true;
 
-           if(i == events.Length - 1)
+            EndLevelList.Add(events[i].E);
+
+            if(i == events.Length - 1)
             {
 
-                foreach (GameObject En in GameObject.FindGameObjectsWithTag("enemy"))
-                {
-
-                    EndLevelList.Add(En);
-
-                }
+                EndCheck = true;
 
             }
 
@@ -223,17 +231,27 @@ public class EventManager : MonoBehaviour
     void EndLevel()
     {
 
+        foreach (GameObject EA in GameObject.FindGameObjectsWithTag("missiles"))
+        {
+
+            Destroy(EA);
+        }
+
+
+        Debug.Log("level ended");
+        Ended = true;
+
         GameObject ShipT = GameObject.Find("shipTarget");
-        GameObject CrosshairFar = GameObject.Find("CrossharFar");
+        GameObject CrosshairFar = GameObject.Find("CrosshairFar");
         GameObject Player = GameObject.Find("Ship");
 
-        
-
-        ShipT.transform.position = new Vector3(0, -3, 20);
+        CrosshairFar.transform.position = new Vector3(0, -3, 45);
         CrosshairFar.SetActive(false);
+        ShipT.GetComponent<ShipTarget>().enabled = false;
+        ShipT.transform.position = new Vector3(0, -3, 20);
 
-        if(Vector3.Distance(Player.transform.position, ShipT.transform.position) < .1f)
-        {
+
+      
 
 
             GameObject.FindGameObjectWithTag("EndScreen").GetComponent<EndScreen>().EndTheLevel();
@@ -241,7 +259,7 @@ public class EventManager : MonoBehaviour
             GameObject.FindGameObjectWithTag("EndScreen").GetComponent<CanvasGroup>().blocksRaycasts = true;
 
 
-        }
+        
 
     }
 

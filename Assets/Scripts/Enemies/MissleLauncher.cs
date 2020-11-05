@@ -26,6 +26,8 @@ public class MissleLauncher : MonoBehaviour
 
     public AudioSource explodeSFX;
 
+    public AudioSource shootSFX;
+
     int i = 0;
 
     Transform LeftLauncher;
@@ -98,6 +100,8 @@ public class MissleLauncher : MonoBehaviour
                     if (side == 1)
                     {
 
+                        shootSFX.Play();
+
                         Instantiate(Missile, LeftLauncher.position, Quaternion.identity);
                         side *= -1;
 
@@ -107,6 +111,7 @@ public class MissleLauncher : MonoBehaviour
                     if (side == -1)
                     {
 
+                        shootSFX.Play();
                         Instantiate(Missile, RightLauncher.position, Quaternion.identity);
                         side *= -1;
 
@@ -143,13 +148,14 @@ public class MissleLauncher : MonoBehaviour
         player.GetComponent<Combo>().Add();
         player.GetComponent<Score>().ScoreChange(PointsGiven);
         player.GetComponent<PowerUp>().Add(GetComponent<Charge>().charge);
+        GameObject.Find("EventManager").GetComponent<EventManager>().EndLevelList.Remove(gameObject);
         explodeSFX.Play();
 
     }
 
     void Despawn()
     {
-
+        GameObject.Find("EventManager").GetComponent<EventManager>().EndLevelList.Remove(gameObject);
         Destroy(gameObject);
     }
 

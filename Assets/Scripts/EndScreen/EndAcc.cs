@@ -12,10 +12,10 @@ public class EndAcc : MonoBehaviour
 
     public int multiplier;
 
-    int shots;
-    int hits;
+    public float shots;
+    public float hits;
 
-    float acc;
+    public float acc;
 
     public int s;
 
@@ -23,7 +23,10 @@ public class EndAcc : MonoBehaviour
     void Start()
     {
 
-        acc = hits / shots;
+        hits = GameObject.Find("Ship").GetComponent<PlayerManager>().Hits;
+        shots = GameObject.Find("Ship").GetComponent<PlayerManager>().Shots;
+
+        acc = Mathf.Round((hits / shots) * 1000.0f) / 10.0f;
 
         number.text = acc.ToString();
 

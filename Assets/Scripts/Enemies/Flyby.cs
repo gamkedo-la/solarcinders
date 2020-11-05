@@ -146,7 +146,7 @@ public class Flyby : MonoBehaviour
 
     void Despawn()
     {
-
+        GameObject.Find("EventManager").GetComponent<EventManager>().EndLevelList.Remove(gameObject);
         Destroy(gameObject);
 
     }
@@ -175,6 +175,7 @@ public class Flyby : MonoBehaviour
         player.GetComponent<Combo>().Add();
         player.GetComponent<Score>().ScoreChange(PointsGiven);
         player.GetComponent<PowerUp>().Add(GetComponent<Charge>().charge);
+        GameObject.Find("EventManager").GetComponent<EventManager>().EndLevelList.Remove(gameObject);
         explodeSFX.Play();
 
     }

@@ -31,6 +31,8 @@ public class PlayerManager : MonoBehaviour
 
     public int Shots;
     public int Hits;
+
+    public float acc;
     public int LongestCombo;
    
 
@@ -47,7 +49,10 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //acc = Mathf.Round((Hits / Shots) * 100) / 100;
         
+
+
         //if (Input.GetButtonDown("Fire1") &&
         //    GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>().isPaused == false)
         //{
@@ -173,6 +178,13 @@ public class PlayerManager : MonoBehaviour
             playerHitSFX.Play();
         }
 
+        if (collide.gameObject.tag == "missiles")
+        {
+
+            TakeDamage(collide.gameObject.GetComponent<Damage>().damage);
+            playerHitSFX.Play();
+        }
+
     }
 
     void TakeDamage(int dam)
@@ -221,6 +233,8 @@ public class PlayerManager : MonoBehaviour
         Debug.Log("Shoot pressed");
         if (GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>().isPaused == false)
         {
+            
+
             if (GetComponent<PowerUp>().On == true)
             {
                 GetComponent<Shoot>().PowerShot();

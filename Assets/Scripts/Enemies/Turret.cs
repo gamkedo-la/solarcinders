@@ -94,6 +94,7 @@ public class Turret : MonoBehaviour
 
     private void Despawn()
     {
+        GameObject.Find("EventManager").GetComponent<EventManager>().EndLevelList.Remove(gameObject);
         Destroy(gameObject);
     }
 
@@ -105,7 +106,10 @@ public class Turret : MonoBehaviour
         player.GetComponent<Score>().ScoreChange(PointsGiven);
         player.GetComponent<PowerUp>().Add(GetComponent<Charge>().charge);
         explodeSFX.Play();
+
+        GameObject.Find("EventManager").GetComponent<EventManager>().EndLevelList.Remove(gameObject);
         yield return new WaitForSeconds(explodeSFX.clip.length);
+
         Destroy(gameObject);
     }
 }
