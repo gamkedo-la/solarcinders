@@ -19,7 +19,7 @@ public class EndCombo : MonoBehaviour
     void Start()
     {
 
-        c = GameObject.Find("Ship").GetComponent<PlayerManager>().LongestCombo;
+        c = GameObject.Find("Ship").GetComponent<Score>().LongestCombo;
 
         s = c * multiplier;
 

@@ -22,10 +22,10 @@ public class Combo : MonoBehaviour
         count++;
         timer = reset;
 
-        if(count > GetComponent<PlayerManager>().LongestCombo)
+        if(count > GetComponent<Score>().LongestCombo)
         {
 
-            GetComponent<PlayerManager>().LongestCombo = count;
+            GetComponent<Score>().LongestCombo = count;
         }
 
     }

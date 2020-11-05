@@ -23,8 +23,8 @@ public class EndAcc : MonoBehaviour
     void Start()
     {
 
-        hits = GameObject.Find("Ship").GetComponent<PlayerManager>().Hits;
-        shots = GameObject.Find("Ship").GetComponent<PlayerManager>().Shots;
+        hits = GameObject.Find("Ship").GetComponent<Score>().Hits;
+        shots = GameObject.Find("Ship").GetComponent<Score>().Shots;
 
         acc = Mathf.Round((hits / shots) * 1000.0f) / 10.0f;
 

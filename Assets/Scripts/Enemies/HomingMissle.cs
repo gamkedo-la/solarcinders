@@ -17,6 +17,8 @@ public class HomingMissle : MonoBehaviour
 
     public AudioSource explodeSFX;
 
+    public GameObject Explosion;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -87,6 +89,10 @@ public class HomingMissle : MonoBehaviour
     void Death()
     {
         // send to the void, away from the player:
+        Quaternion quaternion = transform.rotation;
+        quaternion.eulerAngles = new Vector3(quaternion.eulerAngles.x, quaternion.eulerAngles.y + 180, quaternion.eulerAngles.z);
+
+        Instantiate(Explosion, transform.position, quaternion);
         gameObject.transform.position = new Vector3(10000, 10000, 10000);
         explodeSFX.Play();
 

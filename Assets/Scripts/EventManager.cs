@@ -258,8 +258,9 @@ public class EventManager : MonoBehaviour
             GameObject.FindGameObjectWithTag("EndScreen").GetComponent<CanvasGroup>().alpha = 1;
             GameObject.FindGameObjectWithTag("EndScreen").GetComponent<CanvasGroup>().blocksRaycasts = true;
 
+        //Player = GameObject.Find("Ship");
+        //Player.GetComponent<PlayerManager>().enabled = false;
 
-        
 
     }
 

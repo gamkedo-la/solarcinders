@@ -7,16 +7,17 @@ public class Laser : MonoBehaviour {
     public float speed;
     public GameObject target = null;
     float step;
+    public GameObject Explosion;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 
         if (GameObject.Find("coneMaster").GetComponent<TargetLock>().target != null)
         {
             target = GameObject.Find("coneMaster").GetComponent<TargetLock>().target;
         }
 
-        GameObject.Find("Ship").GetComponent<PlayerManager>().Shots++;
+        GameObject.Find("Ship").GetComponent<Score>().Shots++;
 
         //Destroy(gameObject, timer);
 	
@@ -50,7 +51,12 @@ public class Laser : MonoBehaviour {
         {
             // Debug.Log("hit");
             //GameObject.Find("Ship").GetComponent<PowerUp>().Add(collide.gameObject.GetComponent<Charge>().charge);
-            GameObject.Find("Ship").GetComponent<PlayerManager>().Hits++;
+            GameObject.Find("Ship").GetComponent<Score>().Hits++;
+            Quaternion quaternion = transform.rotation;
+            quaternion.eulerAngles = new Vector3(quaternion.eulerAngles.x, quaternion.eulerAngles.y + 180, quaternion.eulerAngles.z);
+
+            Instantiate(Explosion, transform.position, quaternion);
+
             Destroy(gameObject);
         }
     }

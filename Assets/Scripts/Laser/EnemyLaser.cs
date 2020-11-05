@@ -8,7 +8,7 @@ public class EnemyLaser : MonoBehaviour
     public float speed;
     float step;
 
-    
+    public GameObject Explosion;
 
     // Use this for initialization
     void Start()
@@ -32,8 +32,11 @@ public class EnemyLaser : MonoBehaviour
         if (collide.gameObject.tag == "Player")
         {
             // Debug.Log("hit");
-            
 
+            Quaternion quaternion = transform.rotation;
+            quaternion.eulerAngles = new Vector3(quaternion.eulerAngles.x, quaternion.eulerAngles.y + 180, quaternion.eulerAngles.z);
+
+            Instantiate(Explosion, transform.position, quaternion);
             Destroy(gameObject);
         }
     }

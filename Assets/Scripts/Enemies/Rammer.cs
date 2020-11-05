@@ -27,7 +27,7 @@ public class Rammer : MonoBehaviour
 
     int Seed;
 
-    
+    public GameObject Explosion;
 
     Vector3 EndPoint;
 
@@ -180,6 +180,10 @@ public class Rammer : MonoBehaviour
 
         if (collision.collider.tag == "Player")
         {
+            Quaternion quaternion = transform.rotation;
+            quaternion.eulerAngles = new Vector3(quaternion.eulerAngles.x, quaternion.eulerAngles.y + 180, quaternion.eulerAngles.z);
+
+            Instantiate(Explosion, transform.position, quaternion);
 
             TakeDamage(10);
         }

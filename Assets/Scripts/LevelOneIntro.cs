@@ -40,14 +40,14 @@ public class LevelOneIntro : MonoBehaviour
 
     bool ES;
 
-    public InputActionAsset playerInputActions;
-    private InputActionMap playerActionMap;
+
+    GameObject Player;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerActionMap = playerInputActions.FindActionMap("Player");
-        playerActionMap.Disable();
+        Player = GameObject.Find("Ship");
+        Player.GetComponent<PlayerManager>().enabled = false;
         temp = transform.position;
 
         y = temp.y;
@@ -126,7 +126,7 @@ public class LevelOneIntro : MonoBehaviour
         if(transform.position.z < -200)
         {
             crosshairFar.SetActive(true);
-            playerActionMap.Enable();
+            Player.GetComponent<PlayerManager>().enabled = true;
             engine.volume -= Time.deltaTime * 10;
             
         }

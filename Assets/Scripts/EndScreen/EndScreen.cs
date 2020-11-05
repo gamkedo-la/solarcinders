@@ -30,15 +30,14 @@ public class EndScreen : MonoBehaviour
 
     public GameObject EndShip;
 
+    GameObject Player;
 
-    public InputActionAsset playerInputActions;
-    private InputActionMap playerActionMap;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        playerActionMap = playerInputActions.FindActionMap("Player");
-        playerActionMap.Disable();
+
     }
 
     // Update is called once per frame
