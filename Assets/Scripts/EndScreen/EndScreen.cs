@@ -25,6 +25,10 @@ public class EndScreen : MonoBehaviour
 
     public AudioSource hoverSFX;
 
+    bool next = false;
+
+    public GameObject EndShip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -87,6 +91,13 @@ public class EndScreen : MonoBehaviour
 
         }
 
+        if(next == true && countUp >= 2.5f)
+        {
+            SceneManager.LoadScene(NextLevel);
+
+
+        }
+
 
 
 
@@ -99,6 +110,9 @@ public class EndScreen : MonoBehaviour
 
 
         End = true;
+
+
+
 
 
     }
@@ -114,7 +128,20 @@ public class EndScreen : MonoBehaviour
     public void Continue()
     {
 
-        SceneManager.LoadScene(NextLevel);
+        countUp = 0;
+        next = true;
+
+
+        Vector3 temp = GameObject.Find("Ship").transform.position;
+
+        Destroy(GameObject.Find("Ship"));
+
+        Instantiate(EndShip, temp, Quaternion.identity);
+
+
+        GetComponent<CanvasGroup>().alpha = 0;
+
+
     }
 
     public void PlayHoverSFX()
