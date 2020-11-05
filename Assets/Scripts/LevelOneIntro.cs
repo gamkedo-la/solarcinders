@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.InputSystem;
 
 public class LevelOneIntro : MonoBehaviour
 {
@@ -38,10 +40,14 @@ public class LevelOneIntro : MonoBehaviour
 
     bool ES;
 
+    public InputActionAsset playerInputActions;
+    private InputActionMap playerActionMap;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        playerActionMap = playerInputActions.FindActionMap("Player");
+        playerActionMap.Disable();
         temp = transform.position;
 
         y = temp.y;
@@ -120,6 +126,7 @@ public class LevelOneIntro : MonoBehaviour
         if(transform.position.z < -200)
         {
             crosshairFar.SetActive(true);
+            playerActionMap.Enable();
             engine.volume -= Time.deltaTime * 10;
             
         }

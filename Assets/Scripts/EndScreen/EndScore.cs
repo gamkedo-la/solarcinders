@@ -8,11 +8,20 @@ public class EndScore : MonoBehaviour
 
     public Text number;
 
+    public GameObject ship;
+
+    public int score;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        number.text = GameObject.Find("Ship").GetComponent<Score>().score.ToString();
+
+
+
+        ship = GameObject.Find("Ship");
+        score = ship.GetComponent<Score>().score;
+        number.text = score.ToString();
     }
 
     // Update is called once per frame

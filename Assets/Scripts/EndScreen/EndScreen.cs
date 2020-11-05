@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class EndScreen : MonoBehaviour
 {
@@ -29,10 +30,15 @@ public class EndScreen : MonoBehaviour
 
     public GameObject EndShip;
 
+
+    public InputActionAsset playerInputActions;
+    private InputActionMap playerActionMap;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerActionMap = playerInputActions.FindActionMap("Player");
+        playerActionMap.Disable();
     }
 
     // Update is called once per frame

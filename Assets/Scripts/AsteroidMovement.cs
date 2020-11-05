@@ -37,7 +37,7 @@ public class AsteroidMovement : MonoBehaviour
 
     void Despawn()
     {
-
+        GameObject.Find("EventManager").GetComponent<EventManager>().EndLevelList.Remove(gameObject);
         Destroy(gameObject);
     }
 
