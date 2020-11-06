@@ -236,6 +236,11 @@ public class EventManager : MonoBehaviour
 
             Destroy(EA);
         }
+        foreach (GameObject EA in GameObject.FindGameObjectsWithTag("EnemyLaser"))
+        {
+
+            Destroy(EA);
+        }
 
 
         Debug.Log("level ended");

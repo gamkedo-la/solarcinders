@@ -46,12 +46,12 @@ public class TargetLock : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         //Debug.Log("collision");
-        if(other.tag == "enemy")
+        if(other.tag == "enemy" || other.tag == "missile")
         {
             currentCollisions.Add(other.gameObject);
         }
 
-        if (target != null && other.tag == "enemy")
+        if (target != null && (other.tag == "enemy" || other.tag == "missile"))
         {
             if(other.transform.position.z > clip && other.transform.position.z < target.transform.position.z)
             {
@@ -65,7 +65,7 @@ public class TargetLock : MonoBehaviour
             if (other.transform.position.z > clip)
             {
 
-                if (other.tag == "enemy")
+                if (other.tag == "enemy" || other.tag == "missile")
                 {
                     target = other.gameObject;
                     Debug.Log(target);
