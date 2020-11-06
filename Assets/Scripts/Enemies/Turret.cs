@@ -19,6 +19,8 @@ public class Turret : MonoBehaviour
     private EnemyBase myEnemyBase;
     private Rigidbody myRigidbody;
 
+    public GameObject Explosion;
+
     private void Start()
     {
         myEnemyBase = GetComponent<EnemyBase>();
@@ -100,6 +102,7 @@ public class Turret : MonoBehaviour
 
     IEnumerator TurretDeathRoutine()
     {
+        Instantiate(Explosion, transform.position, transform.rotation);
         gameObject.transform.position = new Vector3(10000, 10000, 10000);
         GameObject player = GameObject.Find("Ship");
         player.GetComponent<Combo>().Add();

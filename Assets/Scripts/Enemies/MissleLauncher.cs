@@ -36,6 +36,8 @@ public class MissleLauncher : MonoBehaviour
 
     public GameObject Missile;
 
+    public GameObject Explosion;
+
     Vector3 EndPoint = new Vector3(0,0,70);
     // Start is called before the first frame update
     void Start()
@@ -144,6 +146,8 @@ public class MissleLauncher : MonoBehaviour
     void Death()
     {
         // send to the void, away from the player:
+        Instantiate(Explosion, transform.position, transform.rotation);
+
         gameObject.transform.position = new Vector3(10000, 10000, 10000);
         player.GetComponent<Combo>().Add();
         player.GetComponent<Score>().ScoreChange(PointsGiven);

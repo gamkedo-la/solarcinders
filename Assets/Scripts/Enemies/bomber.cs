@@ -24,6 +24,8 @@ public class bomber : MonoBehaviour
 
     levelBounds SceneMan;
 
+    public GameObject Explosion;
+
 
     // Start is called before the first frame update
     void Start()
@@ -98,6 +100,8 @@ public class bomber : MonoBehaviour
     void Death()
     {
         // send to the void, away from the player:
+        Instantiate(Explosion, transform.position, transform.rotation);
+
         gameObject.transform.position = new Vector3(10000, 10000, 10000);
 
         GameObject player = GameObject.Find("Ship");

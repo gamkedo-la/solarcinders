@@ -32,12 +32,16 @@ public class Flyby : MonoBehaviour
     public float Reset;
 
     public AudioSource explodeSFX;
+    public GameObject Explosion;
 
+    GameObject player;
+
+    bool ded = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.Find("Ship");
         if (transform.position.x < 0)
         {
 
@@ -89,7 +93,7 @@ public class Flyby : MonoBehaviour
 
             transform.position = Temp;
 
-            if (Mathf.Abs(transform.position.x) > 50)
+            if (Mathf.Abs(transform.position.x) > 50 && ded == false)
             {
 
                 Sw *= -1;
@@ -169,9 +173,9 @@ public class Flyby : MonoBehaviour
     void Death()
     {
         // send to the void, away from the player:
+        Instantiate(Explosion, transform.position, transform.rotation);
+        ded = true;
         gameObject.transform.position = new Vector3(10000, 10000, 10000);
-
-        GameObject player = GameObject.Find("Ship");
         player.GetComponent<Combo>().Add();
         player.GetComponent<Score>().ScoreChange(PointsGiven);
         player.GetComponent<PowerUp>().Add(GetComponent<Charge>().charge);

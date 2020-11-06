@@ -34,6 +34,8 @@ public class Shooter : MonoBehaviour
 
     public Vector3 EndPoint = new Vector3(0,0,0);
 
+    public GameObject Explosion;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -178,6 +180,8 @@ public class Shooter : MonoBehaviour
     void Death()
     {
         // send to the void, away from the player:
+        Instantiate(Explosion, transform.position, transform.rotation);
+
         gameObject.transform.position = new Vector3(10000, 10000, 10000);
 
         GameObject player = GameObject.Find("Ship");
