@@ -143,6 +143,11 @@ public class Rammer : MonoBehaviour
     void Death()
     {
         // send to the void, away from the player:
+
+        Quaternion quaternion = transform.rotation;
+        quaternion.eulerAngles = new Vector3(quaternion.eulerAngles.x, quaternion.eulerAngles.y + 180, quaternion.eulerAngles.z);
+
+        Instantiate(Explosion, transform.position, quaternion);
         gameObject.transform.position = new Vector3(10000, 10000, 10000);
 
         GameObject player = GameObject.Find("Ship");
@@ -180,10 +185,7 @@ public class Rammer : MonoBehaviour
 
         if (collision.collider.tag == "Player")
         {
-            Quaternion quaternion = transform.rotation;
-            quaternion.eulerAngles = new Vector3(quaternion.eulerAngles.x, quaternion.eulerAngles.y + 180, quaternion.eulerAngles.z);
-
-            Instantiate(Explosion, transform.position, quaternion);
+            
 
             TakeDamage(10);
         }
