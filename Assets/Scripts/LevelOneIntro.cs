@@ -42,12 +42,19 @@ public class LevelOneIntro : MonoBehaviour
 
 
     GameObject Player;
+    PlayerInput[] playerInputs;
 
     // Start is called before the first frame update
     void Start()
     {
-        Player = GameObject.Find("Ship");
-        Player.GetComponent<PlayerManager>().enabled = false;
+        Player = GameObject.Find("PlayerManager");
+        //Player.GetComponent<PlayerManager>().enabled = false;
+        playerInputs = Player.GetComponentsInChildren<PlayerInput>();
+        foreach (var playerInput in playerInputs)
+        {
+            playerInput.enabled = false;
+        }
+
         temp = transform.position;
 
         y = temp.y;
@@ -126,7 +133,11 @@ public class LevelOneIntro : MonoBehaviour
         if(transform.position.z < -200)
         {
             crosshairFar.SetActive(true);
-            Player.GetComponent<PlayerManager>().enabled = true;
+            //Player.GetComponent<PlayerManager>().enabled = true;
+            foreach (var playerInput in playerInputs)
+            {
+                playerInput.enabled = true;
+            }
             engine.volume -= Time.deltaTime * 10;
             
         }
