@@ -25,6 +25,7 @@ public class PowerUp : MonoBehaviour
 
     public AudioSource powerUpSFX;
     public AudioSource powerUpDepletedSFX;
+    public AudioSource PowerUpActivateSFX;
 
     MeshRenderer rend;
 
@@ -119,6 +120,7 @@ public class PowerUp : MonoBehaviour
         Debug.Log("Powerup pressed");
         if (On == false && Charge >= 50)
         {
+            PowerUpActivateSFX.Play();
             On = true;
             var tempmaterialarray = rend.materials;
             tempmaterialarray[0] = wing_P;
