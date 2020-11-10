@@ -12,7 +12,7 @@ public class BossArm : MonoBehaviour
 
     public int Health;
 
-    int state = 1;
+    public int state = 0;
 
     public float stateTimer;
 
@@ -20,7 +20,7 @@ public class BossArm : MonoBehaviour
 
     bool invuln = false;
 
-    public bool spinning = true;
+    public bool spinning = false;
 
     BossArmRot R;
 
@@ -29,6 +29,8 @@ public class BossArm : MonoBehaviour
     public GameObject GunLight;
 
     public GameObject model;
+
+    public int PointsGiven;
 
     // Start is called before the first frame update
     void Start()
@@ -99,6 +101,8 @@ public class BossArm : MonoBehaviour
         {
             Health = ((10 * state) + 20);
             player.GetComponent<PowerUp>().Add(GetComponent<Charge>().charge);
+            player.GetComponent<Score>().ScoreChange(PointsGiven);
+            PointsGiven += 15;
         }
     }
 

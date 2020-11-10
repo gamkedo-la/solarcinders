@@ -11,7 +11,7 @@ public class BossCenter : MonoBehaviour
 
     public int Health;
 
-    public int state = 1;
+    public int state = 0;
 
     BossArm BA;
 
@@ -22,6 +22,8 @@ public class BossCenter : MonoBehaviour
     GameObject player;
 
     public GameObject centerlight;
+
+    public int PointsGiven;
 
     // Start is called before the first frame update
     void Start()
@@ -84,6 +86,8 @@ public class BossCenter : MonoBehaviour
             BA.GunLight.SetActive(true);
             R.spinning = true;
             player.GetComponent<PowerUp>().Add(GetComponent<Charge>().charge);
+            player.GetComponent<Score>().ScoreChange(PointsGiven);
+            PointsGiven += 15;
 
         }
         if(state >= 4)
