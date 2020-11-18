@@ -30,7 +30,9 @@ public class PowerUp : MonoBehaviour
     MeshRenderer rend;
 
     bool ready = false;
-   
+
+    public GameObject E;
+    public GameObject EP;
 
     
     // Start is called before the first frame update
@@ -68,6 +70,8 @@ public class PowerUp : MonoBehaviour
                 tempmaterialarray[0] = wing_N;
                 tempmaterialarray[3] = engine_N;
                 rend.materials = tempmaterialarray;
+                E.SetActive(true);
+                EP.SetActive(false);
                 ready = false;
 
                 /* rend.materials[0] = wing_N;
@@ -126,6 +130,8 @@ public class PowerUp : MonoBehaviour
             tempmaterialarray[0] = wing_P;
             tempmaterialarray[3] = engine_P;
             rend.materials = tempmaterialarray;
+            E.SetActive(false);
+            EP.SetActive(true);
             /* rend.materials[0] = wing_P;
             rend.materials[3] = engine_P; */
 

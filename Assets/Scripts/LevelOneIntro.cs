@@ -40,6 +40,7 @@ public class LevelOneIntro : MonoBehaviour
 
     bool ES;
 
+    public GameObject SE;
 
     GameObject Player;
     PlayerInput[] playerInputs;
@@ -47,6 +48,7 @@ public class LevelOneIntro : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SE.SetActive(false);
         Player = GameObject.Find("PlayerManager");
         //Player.GetComponent<PlayerManager>().enabled = false;
         playerInputs = Player.GetComponentsInChildren<PlayerInput>();
@@ -74,6 +76,7 @@ public class LevelOneIntro : MonoBehaviour
         if(t > -0.5f && L == false)
         {
             spot.SetActive(true);
+            
             L = true;
             engine.Play();
             GameObject.Find("Ship").GetComponent<PlayerManager>().engine.Play();
@@ -88,7 +91,7 @@ public class LevelOneIntro : MonoBehaviour
         }
         if (t > 1)
         {
-
+            SE.SetActive(true);
             speed = Mathf.Lerp(0, 600, tt);
 
             tt += (Time.deltaTime / 5);
