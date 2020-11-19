@@ -160,6 +160,13 @@ public class PlayerManager : MonoBehaviour
 
     void OnCollisionEnter(Collision collide)
     {
+
+        if (collide.gameObject.tag == "missiles")
+        {
+
+            TakeDamage(collide.gameObject.GetComponent<Damage>().damage);
+            playerHitSFX.Play();
+        }
         if (collide.gameObject.tag == "EnemyLaser")
         {
             if (rolling == false)
@@ -180,12 +187,7 @@ public class PlayerManager : MonoBehaviour
             playerHitSFX.Play();
         }
 
-        if (collide.gameObject.tag == "missiles")
-        {
 
-            TakeDamage(collide.gameObject.GetComponent<Damage>().damage);
-            playerHitSFX.Play();
-        }
 
     }
 

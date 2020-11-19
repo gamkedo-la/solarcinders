@@ -116,7 +116,7 @@ public class HomingMissle : MonoBehaviour
 
         Debug.Log("hit homing missile");
 
-        if (collision.collider.tag == "PlayerLaser")
+        if (collision.gameObject.tag == "PlayerLaser")
         {
 
             TakeDamage(collision.gameObject.GetComponent<Damage>().damage);
@@ -124,7 +124,7 @@ public class HomingMissle : MonoBehaviour
 
         }
 
-        if(collision.collider.tag == "Player")
+        if(collision.gameObject.tag == "Player")
         {
 
             TakeDamage(10);
