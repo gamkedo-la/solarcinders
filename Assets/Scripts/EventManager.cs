@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 
 
@@ -35,6 +36,8 @@ public class EventManager : MonoBehaviour
     public int EC;
 
     public List<GameObject> EndLevelList = new List<GameObject>();
+
+    PlayerInput[] playerInputs;
 
     // Start is called before the first frame update
     void Start()
@@ -262,6 +265,14 @@ public class EventManager : MonoBehaviour
             GameObject.FindGameObjectWithTag("EndScreen").GetComponent<EndScreen>().EndTheLevel();
             GameObject.FindGameObjectWithTag("EndScreen").GetComponent<CanvasGroup>().alpha = 1;
             GameObject.FindGameObjectWithTag("EndScreen").GetComponent<CanvasGroup>().blocksRaycasts = true;
+
+        Player = GameObject.Find("PlayerManager");
+        //Player.GetComponent<PlayerManager>().enabled = false;
+        playerInputs = Player.GetComponentsInChildren<PlayerInput>();
+        foreach (var playerInput in playerInputs)
+        {
+            playerInput.enabled = false;
+        }
 
         //Player = GameObject.Find("Ship");
         //Player.GetComponent<PlayerManager>().enabled = false;
