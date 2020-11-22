@@ -10,6 +10,7 @@ public class Turret : MonoBehaviour
     public int Health;
     public int PointsGiven;
     public AudioSource explodeSFX;
+    public AudioSource getHitSFX;
 
     float ShotTimer = 0f;
     public const float ShotReset = 1.0f;
@@ -87,6 +88,7 @@ public class Turret : MonoBehaviour
 
     private void TakeDamage(int damage)
     {
+        getHitSFX.Play();
         Health -= damage;
         if (Health <= 0)
         {

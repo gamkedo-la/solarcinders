@@ -27,6 +27,7 @@ public class Shooter : MonoBehaviour
     public float dist;
 
     public AudioSource explodeSFX;
+    public AudioSource getHitSFX;
 
     int Seed;
 
@@ -218,7 +219,7 @@ public class Shooter : MonoBehaviour
 
     void TakeDamage(int dam)
     {
-
+        getHitSFX.Play();
         HP -= dam;
 
     }

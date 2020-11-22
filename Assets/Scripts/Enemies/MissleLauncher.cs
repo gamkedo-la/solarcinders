@@ -28,6 +28,8 @@ public class MissleLauncher : MonoBehaviour
 
     public AudioSource shootSFX;
 
+    public AudioSource getHitSFX;
+
     int i = 0;
 
     Transform LeftLauncher;
@@ -165,7 +167,7 @@ public class MissleLauncher : MonoBehaviour
 
     void TakeDamage(int dam)
     {
-
+        getHitSFX.Play();
         HP -= dam;
 
     }

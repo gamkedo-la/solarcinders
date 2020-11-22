@@ -21,6 +21,7 @@ public class bomber : MonoBehaviour
     public int PointsGiven;
 
     public AudioSource explodeSFX;
+    public AudioSource getHitSFX;
 
     levelBounds SceneMan;
 
@@ -149,6 +150,6 @@ public class bomber : MonoBehaviour
     {
 
         HP -= dam;
-
+        getHitSFX.Play();
     }
 }

@@ -32,6 +32,8 @@ public class BossArm : MonoBehaviour
 
     int PointsGiven = 300;
 
+    public AudioSource getHitSFX;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -79,6 +81,7 @@ public class BossArm : MonoBehaviour
     private void TakeDamage(int damage)
     {
         Health -= damage;
+        getHitSFX.Play();
         if (Health <= 0)
         {
             StateMachine();

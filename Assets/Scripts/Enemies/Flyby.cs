@@ -33,6 +33,7 @@ public class Flyby : MonoBehaviour
 
     public AudioSource explodeSFX;
     public GameObject Explosion;
+    public AudioSource getHitSFX;
 
     GameObject player;
 
@@ -143,7 +144,7 @@ public class Flyby : MonoBehaviour
 
     void TakeDamage(int dam)
     {
-
+        getHitSFX.Play();
         Health -= dam;
 
     }
