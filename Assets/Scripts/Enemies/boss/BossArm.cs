@@ -30,7 +30,7 @@ public class BossArm : MonoBehaviour
 
     public GameObject model;
 
-    public int PointsGiven;
+    int PointsGiven = 300;
 
     // Start is called before the first frame update
     void Start()
@@ -101,8 +101,9 @@ public class BossArm : MonoBehaviour
         {
             Health = ((10 * state) + 20);
             player.GetComponent<PowerUp>().Add(GetComponent<Charge>().charge);
+            player.GetComponent<Combo>().Add();
             player.GetComponent<Score>().ScoreChange(PointsGiven);
-            PointsGiven += 15;
+            PointsGiven += 150;
         }
     }
 
