@@ -41,7 +41,7 @@ public class Level2intro : MonoBehaviour
     void Update()
     {
         
-        if(Vector3.Distance(ship.transform.position, ST.transform.position) < .5f)
+        if(Vector3.Distance(ship.transform.position, ST.transform.position) < .2f)
         {
 
             MC.GetComponent<CameraMovement>().enabled = true;
