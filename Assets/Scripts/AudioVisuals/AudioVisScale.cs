@@ -26,7 +26,8 @@ public class AudioVisScale : MonoBehaviour
         currentLoudness = 0;
 
 #if UNITY_WEBGL
-        ScaleObject(0.1f+ 0.15f*Mathf.Cos(9.0f*Time.timeSinceLevelLoad));
+        float posCosCalc = 1.0f-Mathf.Abs(Mathf.Cos((Time.timeSinceLevelLoad+0.5f) * 72.0f/60.0f * Mathf.PI));
+        ScaleObject(0.07f+ 0.13f* posCosCalc * posCosCalc);
 #else
         // Fill array audioSamples with number of samples starting from current playback position of audioSource
         audioSource.clip.GetData(audioSamples, audioSource.timeSamples);
