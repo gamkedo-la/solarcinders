@@ -205,7 +205,7 @@ public class Shooter : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
 
-        Debug.Log("hit Shooter");
+
 
         if (collision.collider.tag == "PlayerLaser")
         {

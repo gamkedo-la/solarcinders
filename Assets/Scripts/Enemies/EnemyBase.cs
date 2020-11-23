@@ -47,16 +47,4 @@ public class EnemyBase : MonoBehaviour
         }*/
     }
 
-    void OnCollisionEnter(Collision other)
-    {
-        if (other.transform.tag == "PlayerLaser")
-        {
-            Debug.Log("enemyhit");
-            //Destroy(gameObject);
-            //gameObject.GetComponent<Renderer>().material.color = HitColor;
-
-
-        }
-
-    }
 }

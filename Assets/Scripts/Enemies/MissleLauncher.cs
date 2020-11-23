@@ -175,7 +175,7 @@ public class MissleLauncher : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
 
-        Debug.Log("hit homing missile");
+
 
         if (collision.collider.tag == "PlayerLaser")
         {

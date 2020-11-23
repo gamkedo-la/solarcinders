@@ -114,7 +114,7 @@ public class HomingMissle : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
 
-        Debug.Log("hit homing missile");
+
 
         if (collision.gameObject.tag == "PlayerLaser")
         {
