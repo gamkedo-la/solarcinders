@@ -23,8 +23,11 @@ public class AudioVisScale : MonoBehaviour
     private void FixedUpdate()
     {
         sampleSum = 0;
-        currentLoudness = 0;        
+        currentLoudness = 0;
 
+#if UNITY_WEBGL
+        ScaleObject(0.1f+ 0.15f*Mathf.Cos(9.0f*Time.timeSinceLevelLoad));
+#else
         // Fill array audioSamples with number of samples starting from current playback position of audioSource
         audioSource.clip.GetData(audioSamples, audioSource.timeSamples);
 
@@ -36,6 +39,7 @@ public class AudioVisScale : MonoBehaviour
         currentLoudness = sampleSum / audioSamples.Length; // Average loudness
 
         ScaleObject(currentLoudness);
+#endif
     }
 
     private void ScaleObject(float loudness)
