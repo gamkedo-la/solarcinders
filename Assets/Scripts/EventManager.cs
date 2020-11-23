@@ -74,7 +74,7 @@ public class EventManager : MonoBehaviour
 
         if (EC == 0 && EndCheck == true && Ended == false)
         {
-            Debug.Log("ending level");
+
             EndLevel();
         }
 

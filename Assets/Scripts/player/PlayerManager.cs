@@ -225,7 +225,7 @@ public class PlayerManager : MonoBehaviour
 
     private void OnBarrelRoll()
     {
-        Debug.Log("Barrel roll pressed");
+
         if (rolling == false && GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>().isPaused == false)
         {
             BarrellRoll();
@@ -234,7 +234,7 @@ public class PlayerManager : MonoBehaviour
 
     private void OnShoot()
     {
-        Debug.Log("Shoot pressed");
+
         if (GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>().isPaused == false)
         {
             
@@ -253,7 +253,7 @@ public class PlayerManager : MonoBehaviour
 
     private void OnPause()
     {
-        Debug.Log("Pause pressed");
+
         GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>().TogglePause();
     }
 }

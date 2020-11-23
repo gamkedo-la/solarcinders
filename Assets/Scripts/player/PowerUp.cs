@@ -121,7 +121,7 @@ public class PowerUp : MonoBehaviour
 
     private void OnPowerup()
     {
-        Debug.Log("Powerup pressed");
+
         if (On == false && Charge >= 50)
         {
             PowerUpActivateSFX.Play();

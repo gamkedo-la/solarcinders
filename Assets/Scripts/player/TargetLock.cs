@@ -56,7 +56,7 @@ public class TargetLock : MonoBehaviour
             if(other.transform.position.z > clip && other.transform.position.z < target.transform.position.z)
             {
                 target = other.gameObject;
-                Debug.Log(target.name);
+
                 return;
             }
 
@@ -68,7 +68,7 @@ public class TargetLock : MonoBehaviour
                 if (other.tag == "enemy" || other.tag == "missile")
                 {
                     target = other.gameObject;
-                    Debug.Log(target);
+
                     return;
 
                 }
