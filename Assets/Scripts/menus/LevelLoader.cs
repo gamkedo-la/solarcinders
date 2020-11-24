@@ -11,4 +11,10 @@ public class LevelLoader : MonoBehaviour
     {
         SceneManager.LoadScene(nextSceneName);
     }
+
+    public void Close()
+    {
+
+        Application.Quit();
+    }
 }
