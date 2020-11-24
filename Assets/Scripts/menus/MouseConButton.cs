@@ -24,7 +24,9 @@ public class MouseConButton : MonoBehaviour
     public void Switch()
     {
 
-        PlayerPrefs.SetInt("MouseControl", PlayerPrefs.GetInt("MouseControl") * - 1);
+        PlayerPrefs.SetInt("MouseCon", PlayerPrefs.GetInt("MouseCon") * - 1);
+
+        Debug.Log(PlayerPrefs.GetInt("MouseCon"));
 
         other.GetComponent<Button>().interactable = true;
 
